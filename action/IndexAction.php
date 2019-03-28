@@ -8,9 +8,6 @@
 		}
 
 		protected function executeAction() {
-			if(isset($_POST["username"]))
-			{
-
-			}
+			Connection::getConnection();
 		}
 	}
