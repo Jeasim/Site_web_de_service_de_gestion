@@ -31,6 +31,11 @@
 				<input id="passwordInput" type="password" name="password" required>
 			</div>
 		</div>
+		<div class="form-singleLine"></div>
+			<div class="form-input">
+				<button type="submit">Connexion</button>
+			</div>
+		</div>
 	</div>
 </form>
 

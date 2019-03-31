@@ -40,7 +40,7 @@
 
 
 		public function getUsername() {
-			return empty($_SESSION["username"]) ? "Invité" : $_SESSION["username"];
+			return empty($_SESSION["name"]) ? "Invité" : $_SESSION["name"];
 		}
 
 		public function isLoggedIn() {
