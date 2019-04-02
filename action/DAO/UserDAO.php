@@ -24,15 +24,35 @@
 			return $name;
 		}
 
-		public static function getProfile($username) {
+		public static function verifyUsernameUnicity($username){
 			$connection = Connection::getConnection();
 
-			$info = "";
+			$statement = $connection->prepare("SELECT * FROM users WHERE username = ?");
+            $statement->bind_param("s", $username);
+			$statement->execute();
+			$result = $statement->get_result();
 
-			if ($username == "john") {
-				$info = "info@john.com";
+			$validUsername = true;
+			
+			if ( $result->num_rows > 0) {
+				$validUsername = false;
 			}
 
-			return $info;
+			$statement->close();
+
+			return $validUsername;
+		}
+
+		public static function insertNewUser($username, $firstname, $lastname, $email, $password) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
+			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $password);
+			$statement->execute();
+			$result = $statement->get_result();
+			echo $result;
+
+			$statement->close();
+			return $result;
 		}
 	}

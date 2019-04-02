@@ -19,7 +19,7 @@
                 echo "Error creating database: " . Connection::$connection->error;
             }
 
-            Connection::$connection->select_db("couplingdb");
+            Connection::$connection->select_db(DB_NAME);
             
 
            

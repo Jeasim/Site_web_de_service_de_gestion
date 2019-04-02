@@ -12,7 +12,7 @@
 <p id="presentation">Coupling est une solution simple pour les vies de couple compliquées. Vous pourrez dorénavant être en synchronicité dans l'organisation de votre planning</p>
 </div>
 
-<form action="index.php" method="post" id="formLogin">
+<form action="index.php" method="post">
 	<div id="loginForm">
 		<div class="form-singleLine">
 			<div class="form-label">
@@ -38,6 +38,8 @@
 		</div>
 	</div>
 </form>
+
+<a href="signup.php">S'inscrire</a>
 
 
 <?php

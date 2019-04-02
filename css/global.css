@@ -1,0 +1,62 @@
+
+
+.menu{
+    position: sticky;
+    right: 2%;
+    width: 15%;
+    height: 90%;
+    padding: 1em 1em;
+    background-color: aqua;
+}
+
+.imageUser {
+    width: 150px;
+    height: 150px;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.username-section{
+    text-align: center;
+    margin-top: 2%;
+    font-size: 1.2em;
+}
+
+.menu ul{
+    list-style: none;
+    font-size: 1.1em;
+    line-height: 3em;
+}
+
+#signup-form {
+	border:1px solid #aaaaaa;
+	padding:10px;
+	padding-bottom:0px;
+    min-height:200px;
+    max-width: 500px;
+}
+
+
+.form-singleLine{
+	margin-top: 6px;
+    display:flex;
+    justify-content: center;
+    padding-right: 10px;
+    margin: 0.8em 0; 
+}
+
+.form-label{
+	flex: 5;
+	text-align: right;
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+.form-input{
+	flex: 6;
+}
+
+.validation-info{
+    flex: 4;
+    font-size: 0.7em;
+}
