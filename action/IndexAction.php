@@ -4,27 +4,34 @@
 
 	class IndexAction extends CommonAction {
 
+		public $wrongUsername;
+		public $wrongPassword;
+
 		public function __construct() {
 			parent::__construct(CommonAction::$VISIBILITY_PUBLIC, "Login");
 		}
 
 		protected function executeAction() {
-			$this->wrongLogin = false;
+			$this->wrongUsername = false;
+			$this->wrongPassword = false;
 
-			if (isset($_POST["username"])) {
-				$userInfo = UserDAO::authenticate($_POST["username"], $_POST["password"]);
+			if(!empty($_POST["username"]) && !empty($_POST["password"])){
+				if ($pwd = UserDAO::verifyUsername($_POST["username"])) {
+					if(password_verify($_POST["password"], $pwd)){
 
-				if (!empty($userInfo)) {
-
-					$_SESSION["name"] = $userInfo;
-					$_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
-
-					header("location:home.php");
-					exit;
+						$_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
+	
+						header("location:home.php");
+						exit;
+					}
+					else{
+						$this->wrongPassword = true;
+					}
 				}
 				else {
-					$this->wrongLogin = true;
+					$this->wrongUsername = true;
 				}
 			}
+			
 		}
 	}

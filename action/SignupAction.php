@@ -14,6 +14,7 @@
 				if($_POST["password"] === $_POST["password-confirm"]){
 					if(UserDAO::verifyUsernameUnicity($_POST["username"])){
 						UserDAO::insertNewUser($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"]);
+						
 					}
 				}
 			}

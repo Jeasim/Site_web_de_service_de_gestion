@@ -3,7 +3,7 @@
 
 	class UserDAO {
 
-		public static function authenticate($username, $password) {
+		public static function verifyUsername($username) {
 			$connection = Connection::getConnection();
 
             $statement = $connection->prepare("SELECT * FROM users WHERE username = ?");
@@ -11,18 +11,19 @@
 			$statement->execute();
 			$result = $statement->get_result();
 			
-			$username = null;
+			$password = null;
 			
 			if ( $result->num_rows > 0) {
 				while($row = $result->fetch_assoc()) {
-					if ($password === $row["pwd"]) {
-						$name = $row["firstname"];
-					}
+					$password = $row["pwd"];
 				}
 			}
+		
 
-			return $name;
+			return $password;
 		}
+
+	
 
 		public static function verifyUsernameUnicity($username){
 			$connection = Connection::getConnection();
@@ -47,14 +48,12 @@
 			$connection = Connection::getConnection();
 
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-			echo $hashedPassword;
-
 			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
 			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
 			$statement->execute();
 			$result = $statement->get_result();
-
 			$statement->close();
+
 			return $result;
 		}
 	}

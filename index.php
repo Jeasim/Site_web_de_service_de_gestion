@@ -21,14 +21,29 @@
 			<div class="form-input">
 				<input id="usernameInput" type="text" name="username" required>
 			</div>
+			<div class="validation-info">
+				<?php if($action->wrongUsername){
+				?> 
+				Usager non-existant!
+				<?php
+				}
+				?>
+			</div>
 		</div>
-		<div class="form-singleLine"></div>
+		<div class="form-singleLine">
 			<div class="form-label">
-				<div class="indication">
-					Mot de passe :
+				Mot de passe :
 			</div>
 			<div class="form-input">
 				<input id="passwordInput" type="password" name="password" required>
+			</div>
+			<div class="validation-info">
+				<?php if($action->wrongPassword){
+				?> 
+				Mauvais mot de passe!
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		<div class="form-singleLine"></div>
