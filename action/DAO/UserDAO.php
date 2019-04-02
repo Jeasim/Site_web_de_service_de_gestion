@@ -46,11 +46,13 @@
 		public static function insertNewUser($username, $firstname, $lastname, $email, $password) {
 			$connection = Connection::getConnection();
 
+			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+			echo $hashedPassword;
+
 			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
-			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $password);
+			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
 			$statement->execute();
 			$result = $statement->get_result();
-			echo $result;
 
 			$statement->close();
 			return $result;

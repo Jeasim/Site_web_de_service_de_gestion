@@ -13,7 +13,7 @@
 			if(!empty($_POST["username"]) && !empty($_POST["email"]) && !empty($_POST["firstName"]) && !empty($_POST["lastName"]) && !empty($_POST["password"]) && !empty($_POST["password-confirm"])){
 				if($_POST["password"] === $_POST["password-confirm"]){
 					if(UserDAO::verifyUsernameUnicity($_POST["username"])){
-						echo UserDAO::insertNewUser($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"]);
+						UserDAO::insertNewUser($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"]);
 					}
 				}
 			}
