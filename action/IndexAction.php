@@ -16,13 +16,12 @@
 			$this->wrongPassword = false;
 
 			if(!empty($_POST["username"]) && !empty($_POST["password"])){
-				if ($pwd = UserDAO::verifyUsername($_POST["username"])) {
-					if(password_verify($_POST["password"], $pwd)){
 
-						$_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
-	
-						header("location:home.php");
-						exit;
+				
+				if (UserDAO::verifyUsername($_POST["username"])) {
+
+					if(UserDAO::verifyPassword($_POST["username"], $_POST["password"])){
+						$this->login();
 					}
 					else{
 						$this->wrongPassword = true;
@@ -32,6 +31,13 @@
 					$this->wrongUsername = true;
 				}
 			}
-			
+		}
+
+
+		protected function login(){
+			$_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
+			$_SESSION["firstname"] = UserDAO::getFirstname($_POST["username"]);
+			header("location:home.php");
+			exit;
 		}
 	}

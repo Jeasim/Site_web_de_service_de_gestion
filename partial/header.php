@@ -12,17 +12,16 @@
 	<div class="menu">		
 		<div class="imageUser"></div>
 		<div class="username-section">
-			Bonjour, <?= $action->getUsername() ?> 
+			Bonjour, <?= $action->getFirstname() ?> 
 		</div>
 		<ul>
-			<li><a href="index.php">Page d'accueil</a></li>
 			<?php
 				if ($action->isLoggedIn()) {
 					?>
 					<li><a href="home.php">Home</a></li>
-					<li>Calendrier</li>
-					<li>Budget</li>
-					<li>Listes</li>
+					<li><a href="calendarPage.php">Calendrier</a></li>
+					<li><a href="budgetPage.php">Budget</li>
+					<li><a href="listsPage.php">Listes</a></li>
 					<?php
 				}
 				else {

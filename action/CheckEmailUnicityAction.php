@@ -1,8 +1,8 @@
 <?php
     require_once("action/CommonAction.php");
-    require_once("action/DAO/UserDAO.php");
+	require_once("action/DAO/UserDAO.php");
 
-class CheckUsernameUnicityAction extends CommonAction {
+class CheckEmailUnicityAction extends CommonAction {
 
     public $validity;
 
@@ -12,12 +12,12 @@ class CheckUsernameUnicityAction extends CommonAction {
 
     protected function executeAction() {
 
-        if (!empty($_POST["username"])) {
-            if(!UserDAO::verifyUsername($_POST["username"])){
+        if(!empty($_POST["email"])) {
+            if(!UserDAO::verifyEmail($_POST["email"])){
                 $this->validity = "valide";
             }
             else{
-                $this->validity = "deja pris";
+                $this->validity = "email deja utilise";
             }
         }
     }

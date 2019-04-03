@@ -30,9 +30,9 @@
 				Email :
 			</div>
 			<div class="form-input">
-				<input type="email" name="email" required>
+				<input type="email" name="email" id="email" required>
 			</div>
-			<div class="validation-info">
+			<div class="validation-info" id="email-check">
 			</div>
 		</div>        
 		<div class="form-singleLine">

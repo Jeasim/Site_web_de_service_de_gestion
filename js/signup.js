@@ -12,6 +12,11 @@ window.onload = () => {
 		checkMatchingPasswordsAjax();
 	}
 
+	document.querySelector("#email").onblur = () => {
+		console.log("onblur");
+		
+		checkEmailUnicityAjax();
+	}
 }
 
 
@@ -44,6 +49,23 @@ const checkMatchingPasswordsAjax = () => {
 
 		validity = JSON.parse(check);
 		document.querySelector("#passwords-check").innerHTML = validity;
+	})
+
+}
+
+const checkEmailUnicityAjax = () => {
+
+	$.ajax({
+		url : "checkEmailUnicity.php",
+		type: "POST",
+		data: {
+			email : document.querySelector("#email").value
+		}
+	})
+	.done(check => {
+
+		validity = JSON.parse(check);
+		document.querySelector("#email-check").innerHTML = validity;
 	})
 
 }
