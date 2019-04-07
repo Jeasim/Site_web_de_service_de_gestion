@@ -4,14 +4,27 @@
 	class UserDAO {
 		
 		
-		private static function select($table, $field, $value){
+		private static function select($table, $field, $constraint){
 			$connection = Connection::getConnection();
 			$statement = $connection->prepare("SELECT * FROM $table WHERE $field = ?");
-            $statement->bind_param("s", $value);
+            $statement->bind_param("s", $constraint);
 			$statement->execute();
 			$result = $statement->get_result();
 			$statement->close();
 			
+			return $result;
+		}
+
+		public static function insertNewUser($username, $firstname, $lastname, $email, $password) {
+			$connection = Connection::getConnection();
+
+			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
+			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
 			return $result;
 		}
 		
@@ -26,7 +39,6 @@
 		private static function checkValidity($result){
 			return ( $result->num_rows > 0) ? true : false;
 		}
-
 
 		public static function verifyUsername($username) {
 			
@@ -47,24 +59,7 @@
 		}
 
 		public static function getFirstname($username) {
-			$result = self::select("users", "username", $username);
-			return self::fetchData($result, "firstname");
+			$selectResult = self::select("users", "username", $username);
+			return self::fetchData($selectResult, "firstname");
 		}
-
-
-
-		public static function insertNewUser($username, $firstname, $lastname, $email, $password) {
-			$connection = Connection::getConnection();
-
-			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
-			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
-			$statement->execute();
-			$result = $statement->get_result();
-			$statement->close();
-
-			return $result;
-		}
-
-
 	}

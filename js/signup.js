@@ -13,8 +13,6 @@ window.onload = () => {
 	}
 
 	document.querySelector("#email").onblur = () => {
-		console.log("onblur");
-		
 		checkEmailUnicityAjax();
 	}
 }

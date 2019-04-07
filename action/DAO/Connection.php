@@ -19,10 +19,7 @@
                 echo "Error creating database: " . Connection::$connection->error;
             }
 
-            Connection::$connection->select_db(DB_NAME);
-            
-
-           
+            Connection::$connection->select_db(DB_NAME);           
 
 			return Connection::$connection;
 		}

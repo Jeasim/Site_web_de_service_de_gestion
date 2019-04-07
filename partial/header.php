@@ -43,9 +43,9 @@
 			}
 		?>
 	</div>
-	<div class="site-title-section">
-		<h2>Coupling of things</h2>
-		<?= $action->getPageTitle() ?>
-	</div>
+	<div class="container">
+		<div class="site-title-section">
+			<h2>Coupling of things</h2>
+			<?= $action->getPageTitle() ?>
+		</div>
 
-<div class="container">

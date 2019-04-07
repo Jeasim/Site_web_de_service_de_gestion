@@ -74,22 +74,12 @@
 			</div>
 			<div class="validation-info" id="passwords-check">
 			</div>
-        </div>
-        <div class="form-singleLine">
-			<div class="form-label">
-				Nom d'usager de votre partenaire (facultatif) :
-			</div>
-			<div class="form-input">
-				<input type="text" name="partner">
-			</div>
-			<div class="validation-info">
-			</div>
-        </div>
-        
+		</div>  
 		<div class="form-singleLine">
-			<div class="form-input">
-				<button type="submit">S'inscrire</button>
-			</div>
+			<input type="file"/>
+		</div>      
+		<div class="form-singleLine">
+			<button type="submit">S'inscrire</button>
 		</div>
 	</div>
 </form>
