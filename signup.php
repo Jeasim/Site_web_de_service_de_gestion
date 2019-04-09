@@ -8,81 +8,69 @@
 <script src="js/signup.js"></script>
 <script src="js/jquerry.min.js"></script>
 
-<div id="sideSection">
-<h1>Coupling</h1>
-<p id="presentation">Coupling est une solution simple pour les vies de couple compliquées. Vous pourrez dorénavant être en synchronicité dans l'organisation de votre planning mutuel.</p>
-</div>
-
-<form action="signup.php" method="post">
-	<div id="signup-form">
+<div id="form">
+	<h1>Bienvenue!</h1>
+	<form action="signup.php" method="post">
 		<div class="form-singleLine">
 			<div class="form-label">
 				Nom d'utilisateur :
 			</div>
 			<div class="form-input">
-				<input type="text" name="username" id="username" required>
+				<input type="text" name="username" id="username" class="input" required>
 			</div>
-			<div class="validation-info" id="username-check">
-			</div>
+
 		</div>
 		<div class="form-singleLine">
 			<div class="form-label">
-				Email :
+				Adresse courriel :
 			</div>
 			<div class="form-input">
-				<input type="email" name="email" id="email" required>
-			</div>
-			<div class="validation-info" id="email-check">
-			</div>
+				<input type="email" name="email" id="email" class="input" required>
+			</div>			
 		</div>        
 		<div class="form-singleLine">
 			 <div class="form-label">
 				 Prénom :
 			 </div>
 			 <div class="form-input">
-				 <input type="text" name="firstName" required>
+				 <input type="text" name="firstName" class="input" required>
 			 </div>
-			 <div class="validation-info">
-			</div>
 		 </div>
 		 <div class="form-singleLine">
 			 <div class="form-label">
 				 Nom :
 			 </div>
 			 <div class="form-input">
-				 <input type="text" name="lastName" required>
+				 <input type="text" name="lastName" class="input" required>
 			 </div>
-			 <div class="validation-info">
-			</div>
 		 </div>
 		<div class="form-singleLine">
 			<div class="form-label">
 				Mot de passe :
 			</div>
 			<div class="form-input">
-				<input type="password" name="password" id="password" required>
-			</div>
-			<div class="validation-info">
+				<input type="password" name="password" id="password" class="input" required>
 			</div>
         </div>
         <div class="form-singleLine">
 			<div class="form-label">
-				Confirmez le mot de passe :
+				Confirmation du mot de passe :
 			</div>
 			<div class="form-input">
-				<input type="password" name="password-confirm" id="password-confirm" required>
-			</div>
-			<div class="validation-info" id="passwords-check">
+				<input type="password" name="password-confirm" id="password-confirm" class="input" required>
 			</div>
 		</div>  
-		<div class="form-singleLine">
-			<input type="file"/>
-		</div>      
-		<div class="form-singleLine">
-			<button type="submit">S'inscrire</button>
-		</div>
-	</div>
-</form>
+		<!-- <div class="form-singleLine">
+			<div class="form-input">
+				<input type="file"/>
+			</div>
+		</div>       -->
+		
+		<button type="submit" class="form-submit">S'inscrire</button>
+		
+	</form>
+	<div id="validation-info"></div>
+</div>
 
 
 <?php

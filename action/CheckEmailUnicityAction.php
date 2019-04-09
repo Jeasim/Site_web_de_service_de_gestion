@@ -12,12 +12,12 @@ class CheckEmailUnicityAction extends CommonAction {
 
     protected function executeAction() {
 
-        if(!empty($_POST["email"])) {
+        if(isset($_POST["email"])) {
             if(!UserDAO::verifyEmail($_POST["email"])){
                 $this->validity = "valide";
             }
             else{
-                $this->validity = "email deja utilise";
+                $this->validity = "Adresse courriel est déjà utilisé";
             }
         }
     }

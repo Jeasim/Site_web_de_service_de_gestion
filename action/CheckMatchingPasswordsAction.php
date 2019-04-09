@@ -16,7 +16,7 @@ class CheckMatchingPasswordsAction extends CommonAction {
                 $this->validity = "valide";
             }
             else{
-                $this->validity = "les mots de passe doivent être identiques";
+                $this->validity = "Les mots de passe doivent être identiques";
             }
         }
     }

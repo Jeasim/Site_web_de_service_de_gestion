@@ -12,12 +12,12 @@ class CheckUsernameUnicityAction extends CommonAction {
 
     protected function executeAction() {
 
-        if (!empty($_POST["username"])) {
+        if (isset($_POST["username"])) {
             if(!UserDAO::verifyUsername($_POST["username"])){
                 $this->validity = "valide";
             }
             else{
-                $this->validity = "deja pris";
+                $this->validity = "Nom d'utilisateur déjà utilisé";
             }
         }
     }

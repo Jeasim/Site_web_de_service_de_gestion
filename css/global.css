@@ -1,14 +1,155 @@
 html{
     height: 100%;
+    font-family: sans-serif;
 }
 
 body {
-    height: 100%;
     margin: 0 auto;
+    width: 100%;
+    max-width: 1128px;
+}
+
+
+
+/* Menu splash screen ----------------------------*/
+.index-menu{
+    display : flex;
+    margin: 30px 0;
+}
+
+.index-menu h2{
+   color: royalblue;
+   margin: 0;
+   font-size: 3em;
+}
+
+.index-menu h2 a{
+    text-decoration: none;
+ }
+
+.index-menu nav{
+    list-style-type: none;
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 10%;
+}
+
+.index-menu nav ul{
+    margin: 0;
+}
+
+.index-menu nav ul li{
+    padding: 10px 10px;
+    display : inline;
+    margin: 1em 0.5em;
+}
+
+.index-menu nav ul li a{
+    display : inline;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.index-menu nav ul li:nth-of-type(2){
+    border: 2px solid navy;
+    border-radius: 3px;
+}
+
+
+
+/* boite de login / signup --------------------------------------------*/
+#form {
+    margin: 75px auto;
+    border:1px solid #aaaaaa;
+    border-radius: 5px;
+	padding: 3em;
+    max-width: 600px;
+    box-shadow: 1px 1px #888888;
+    background-color: aliceblue;
+}
+
+
+#form h1{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
+.form-singleLine{
+	margin-top: 6px;
+    display:flex;
+    justify-content: center;
+    padding-right: 10px;
+    margin: 0.8em 0; 
+    height: 35px;
+    line-height: 35px;
+}
+
+.form-label{
+	flex: 3;
+	text-align: right;
+	margin-right: 10px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.form-input{
+    flex: 4;
+}
+
+.input{
+    height: 25px;
+    font-size: 0.9em;
+    width: 80%;
+}
+
+#validation-info{
+    margin-bottom: 0;
+    margin-top: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.2em;
+    color: red;
+    font-weight: bolder;
+}
+
+.form-submit{
+    margin: 15px 0;
+    width: 100%;
+    padding: 8px 8px;
+    cursor: pointer;
+    background-color: lightskyblue;
+    color: white;
+    border: 0;
+}
+
+.form-submit:hover{
+    background-color: royalblue;
+}
+
+
+
+
+
+.container{
+    height: 100%;
     display: grid;
-    grid-template-areas: "menu main";
-    grid-template-columns: 1fr 4fr;
-    grid-column-gap: 1em;
+    grid-template-areas: "menu header"
+                         "menu main";
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: 1fr 12fr;
+}
+
+
+.site-title-section {
+    grid-area: header;    
+    background-color: lightcoral;
+}
+
+.site-title-section h2{
+    margin: 0;
 }
 
 .container {
@@ -16,13 +157,6 @@ body {
 }
 
 /* Section menu pour toutes les pages */
-.menu{
-    grid-area: menu;
-    position: sticky;
-    padding: 1em 1em;
-    background-color: aqua;
-}
-
 .imageUser {
     width: 150px;
     height: 150px;
@@ -32,47 +166,45 @@ body {
 
 .username-section{
     text-align: center;
-    margin-top: 2%;
+    margin: 2em 0;
     font-size: 1.2em;
 }
 
-.menu ul{
-    list-style: none;
-    font-size: 1.1em;
+.menu{
+    grid-area: menu;
     line-height: 3em;
+    background-color: lightcoral;
+} 
+
+
+.menu ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: fixed; 
+    overflow: auto; 
 }
 
+.menu li a{
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
 
-/* formulaire d'inscription */
-#signup-form {
-	border:1px solid #aaaaaa;
-	padding:10px;
-	padding-bottom:0px;
-    min-height:200px;
-    max-width: 500px;
+.menu li a:hover{
+    background-color: aliceblue;
 }
 
-
-.form-singleLine{
-	margin-top: 6px;
-    display:flex;
-    justify-content: center;
-    padding-right: 10px;
-    margin: 0.8em 0; 
+.menu li a:active{
+    background-color: grey;
+    color: aliceblue;
 }
 
-.form-label{
-	flex: 5;
-	text-align: right;
-	margin-right: 10px;
-	font-weight: bold;
-}
-
-.form-input{
-	flex: 6;
-}
-
-.validation-info{
-    flex: 4;
-    font-size: 0.7em;
+.logout {
+    position: absolute;
+    bottom: 5%;
+    left: 25%;
 }

@@ -1,24 +1,24 @@
 window.onload = () => {
 	
 	document.querySelector("#username").onblur = () => {
-		checkUsernameUnicityAjax();
-	}
-
-	document.querySelector("#password-confirm").onblur = () => {
-		checkMatchingPasswordsAjax();
-	}
-
-	document.querySelector("#password").onblur = () => {
-		checkMatchingPasswordsAjax();
+		checkUsernameUnicity();
 	}
 
 	document.querySelector("#email").onblur = () => {
-		checkEmailUnicityAjax();
+		checkEmailUnicity();
+	}
+
+	document.querySelector("#password").onblur = () => {
+		checkMatchingPasswords();
+	}
+
+	document.querySelector("#password-confirm").onblur = () => {
+		checkMatchingPasswords();
 	}
 }
 
 
-const checkUsernameUnicityAjax = () => {
+const checkUsernameUnicity = () => {
 	
 	$.ajax({
 		url : "checkUsernameUnicity.php",
@@ -29,29 +29,11 @@ const checkUsernameUnicityAjax = () => {
 	})
 	.done(check => {
 		validity = JSON.parse(check);
-		document.querySelector("#username-check").innerHTML = validity;
+		checkValidity(validity, document.querySelector("#username"));
 	})
 }
 
-const checkMatchingPasswordsAjax = () => {
-
-	$.ajax({
-		url : "checkMatchingPasswords.php",
-		type: "POST",
-		data: {
-			password1 : document.querySelector("#password").value,
-			password2 : document.querySelector("#password-confirm").value
-		}
-	})
-	.done(check => {
-
-		validity = JSON.parse(check);
-		document.querySelector("#passwords-check").innerHTML = validity;
-	})
-
-}
-
-const checkEmailUnicityAjax = () => {
+const checkEmailUnicity = () => {
 
 	$.ajax({
 		url : "checkEmailUnicity.php",
@@ -63,7 +45,43 @@ const checkEmailUnicityAjax = () => {
 	.done(check => {
 
 		validity = JSON.parse(check);
-		document.querySelector("#email-check").innerHTML = validity;
+		checkValidity(validity, document.querySelector("#email"));
+	})
+}
+
+const checkMatchingPasswords = () => {
+
+	$.ajax({
+		url : "checkMatchingPasswords.php",
+		type: "POST",
+		data: {
+			password1 : document.querySelector("#password").value,
+			password2 : document.querySelector("#password-confirm").value
+		}
+	})
+	.done(check => {
+		validity = JSON.parse(check);
+		checkValidity(validity, document.querySelector("#password"));
 	})
 
+}
+
+const checkValidity = (validity, node) => {
+
+	if(validity != "valide"){
+		wrongInputField(validity, node);
+	}
+	else{
+		rightInputField(node);
+	}
+} 
+
+const wrongInputField = (message, node) => {
+	document.getElementById("validation-info").innerHTML = message;
+	node.style.backgroundColor = "#ffe5e5";
+}
+
+const rightInputField = (node) => {
+	document.getElementById("validation-info").innerHTML = "";
+	node.style.backgroundColor = "#fff";
 }

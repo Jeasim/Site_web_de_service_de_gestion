@@ -10,7 +10,7 @@
 	<h1>Coupling</h1>
 	<p id="presentation">Coupling est une solution simple pour les vies de couple compliquées. Vous pourrez dorénavant être en synchronicité dans l'organisation de votre planning</p>
 </div>
-
+<!-- 
 <div id="loginForm">
 	<form action="index.php" method="post">
 		<div class="form-singleLine">
@@ -50,7 +50,7 @@
 		</div>
 	</form>
 	<a href="signup.php">S'inscrire</a>
-</div>
+</div> -->
 
 
 

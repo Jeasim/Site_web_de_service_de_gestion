@@ -5,7 +5,7 @@
 	class SignupAction extends CommonAction {
 
 		public function __construct() {
-			parent::__construct(CommonAction::$VISIBILITY_PUBLIC, "Signup");
+			parent::__construct(CommonAction::$VISIBILITY_PUBLIC, "S'inscrire");
 		}
 
 		protected function executeAction() {
