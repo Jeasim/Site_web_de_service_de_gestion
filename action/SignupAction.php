@@ -10,6 +10,10 @@
 
 		protected function executeAction() {
 
+			if($_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC){
+				header("location:home.php");
+			}
+
 			if($this->allFieldsFilled() && $this->matchingPasswords() && $this->usernameUnicity() && $this->emailUnicity()){
 				UserDAO::insertNewUser($_POST["username"], $_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["password"]);
 				$this->login();

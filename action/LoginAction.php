@@ -15,6 +15,10 @@
 			$this->wrongUsername = false;
 			$this->wrongPassword = false;
 
+			if($_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC){
+				header("location:home.php");
+			}
+
 			if($this->fieldsAllFilled()){
 				if ($this->existingUsername()) {
 					if($this->rightPassword()){

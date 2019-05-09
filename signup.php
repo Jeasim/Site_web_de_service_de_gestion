@@ -13,7 +13,7 @@
 	<form action="signup.php" method="post">
 		<div class="form-singleLine">
 			<div class="form-label">
-				Nom d'utilisateur :
+				Nom d'utilisateur 
 			</div>
 			<div class="form-input">
 				<input type="text" name="username" id="username" class="input" required>
@@ -22,7 +22,7 @@
 		</div>
 		<div class="form-singleLine">
 			<div class="form-label">
-				Adresse courriel :
+				Adresse courriel 
 			</div>
 			<div class="form-input">
 				<input type="email" name="email" id="email" class="input" required>
@@ -30,7 +30,7 @@
 		</div>        
 		<div class="form-singleLine">
 			 <div class="form-label">
-				 Prénom :
+				 Prénom 
 			 </div>
 			 <div class="form-input">
 				 <input type="text" name="firstName" class="input" required>
@@ -38,7 +38,7 @@
 		 </div>
 		 <div class="form-singleLine">
 			 <div class="form-label">
-				 Nom :
+				 Nom 
 			 </div>
 			 <div class="form-input">
 				 <input type="text" name="lastName" class="input" required>
@@ -46,7 +46,7 @@
 		 </div>
 		<div class="form-singleLine">
 			<div class="form-label">
-				Mot de passe :
+				Mot de passe 
 			</div>
 			<div class="form-input">
 				<input type="password" name="password" id="password" class="input" required>
@@ -54,7 +54,7 @@
         </div>
         <div class="form-singleLine">
 			<div class="form-label">
-				Confirmation du mot de passe :
+				Confirmation du mot de passe 
 			</div>
 			<div class="form-input">
 				<input type="password" name="password-confirm" id="password-confirm" class="input" required>

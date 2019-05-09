@@ -11,7 +11,7 @@
 	<form action="login.php" method="post">
 		<div class="form-singleLine">
 			<div class="form-label">
-				Nom d'utilisateur :
+				Nom d'utilisateur 
 			</div>
 			<div class="form-input">
 				<input id="usernameInput" type="text" name="username" class="input" required>
@@ -19,7 +19,7 @@
 		</div>
 		<div class="form-singleLine">
 			<div class="form-label">
-				Mot de passe :
+				Mot de passe 
 			</div>
 			<div class="form-input">
 				<input id="passwordInput" type="password" name="password" class="input" required>
