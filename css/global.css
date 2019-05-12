@@ -1,17 +1,49 @@
-@font-face{
-    font-family: 'Caveat-Bold';
-    src: url("../fonts/Caveat-Bold.ttf");
+/* ######################### Table des matieres ########################### */
+/* ------------------------- CSS Reset ------------------------------------ */
+/* ------------------------- Regles generales ----------------------------- */
+/* ------------------------- Header --------------------------------------- */
+/* ------------------------- Menu Accueil --------------------------------- */
+/* ------------------------- Page Listes ---------------------------------- */
+/* ------------------------- Boites de login / singup --------------------- */
+/* ------------------------- Fonts supplementaires ------------------------ */
+/* ######################################################################## */
+
+
+/* ---------- Couleurs ----------- */
+/* Background generale :   #F1F0EB */
+/* Background bleu fonce : #4056A1 */
+/* Background bleu pale :  #C5CBE3 */
+/* Ecriture jaune fonce :  #D79922 */
+/* Ecricuture jaune pale:  #EFE2BA */
+/* Contraste rouge :       #F13C20 */
+
+/* ------------------------- CSS Reset ------------------------------------ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
-@font-face{
-    font-family: 'Delius';
-    src: url("../fonts/Delius-Regular.ttf");
-}
-
+/* ------------------------- Regles generales ----------------------------- */
 html{
     height: 100%;
     font-family: sans-serif;
-    background-color: #EFE2BA;
+    background-color: #F1F0EB;
 }
 
 body {
@@ -20,18 +52,98 @@ body {
     max-width: 1128px;
 }
 
+.body-wrapper{
+    margin-top: 100px;
+}
+
+/* ------------------------- Header --------------------------------------- */
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 56px;
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4056A1;
+    color: #D79922;
+    box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.66);
+    font-family: "Montserrat";
+} 
+
+.site-name{
+    font-family: 'Caveat-Bold';
+    font-size: 2em;
+    flex: 2;
+    padding-right: 40px;
+}
+
+.menu{
+    flex: 5;
+    font-size: 1.1em;
+    padding-bottom: 5px;
+}
+
+nav ul{
+    align-items: center;
+    list-style-type: none;
+    margin: 0 50px;
+    padding: 0 20px;
+    position: fixed; 
+    overflow: auto;
+}
+
+nav li{
+    display: inline-block;
+}
+
+nav li a{
+    color: #EFE2BA;
+    padding: 0 25px;
+    text-decoration: none;
+}
+
+nav li a:hover{
+    background-color: aliceblue;
+}
+
+nav li a:active{
+    background-color: grey;
+    color: aliceblue;
+}
+
+.username-section{
+    text-align: right;
+    flex: 1;
+}
+
+.logout-link{
+    text-decoration: none;
+    padding: 0 20px;
+    flex: 1;
+}
+
+a:visited { 
+    text-decoration: none;  
+    color: #D79922;
+}
+
+.page-title{
+    font-size: 2em;
+    text-align: center;
+}
 
 
-/* Menu splash screen ----------------------------*/
+/* ------------------------- Menu Accueil --------------------------------- */
 .index-menu{
-    display : flex;
     margin: 30px 0;
 }
 
 .index-menu h2{
-   color: royalblue;
    margin: 0;
-   font-size: 3em;
+   font-size: 2.5em;
 }
 
 .index-menu h2 a{
@@ -40,11 +152,8 @@ body {
 
 .index-menu nav{
     list-style-type: none;
-    vertical-align: baseline;
     margin: 0;
     padding: 0;
-    position: absolute;
-    right: 10%;
 }
 
 .index-menu nav ul{
@@ -64,23 +173,50 @@ body {
 }
 
 .index-menu nav ul li:nth-of-type(2){
-    border: 2px solid navy;
+    border: 2px solid #F13C20;
     border-radius: 3px;
+}
+
+/* ------------------------- Page Listes ----------------------------------------*/
+.btn-group-lists{
+    position: absolute;
+    top: 150px;
+    left: 30px;
+    padding: 5px 8px;
+    border: 1px solid #C5CBE3;
+    border-radius: 10px;
+}
+
+.btn-group-lists div{
+    background-color: #C5CBE3;
+    color: #4056A1;
+    text-align: center;
+    padding: 8px;
+    margin: 10px 0;
+    border: 2px solid #C5CBE3;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn-group-lists div:hover{
+    color: #C5CBE3;
+    background-color: #4056A1;
 }
 
 
 
-/* boite de login / signup --------------------------------------------*/
+
+
+/*----------------- Boites de login / signup ------------------------------------*/
 #form {
     margin: 75px auto;
-    border:1px solid #aaaaaa;
+    border:1px solid #D79922;
     border-radius: 5px;
 	padding: 3em;
     max-width: 600px;
     box-shadow: 1px 1px #888888;
-    background-color: aliceblue;
+    background-color: #EFE2BA;
 }
-
 
 #form h1{
     text-align: center;
@@ -122,7 +258,7 @@ body {
     border-radius: 10px;
     text-align: center;
     font-size: 1.2em;
-    color: red;
+    color: #F13C20;
     font-weight: bolder;
 }
 
@@ -131,103 +267,28 @@ body {
     width: 100%;
     padding: 8px 8px;
     cursor: pointer;
-    background-color: lightskyblue;
-    color: white;
+    background-color: #C5CBE3;
+    color: #EFE2BA;
     border: 0;
 }
 
 .form-submit:hover{
-    background-color: royalblue;
-}
-
-
-
-
-
-.site-title-section {
-    grid-area: header;    
-    background-color: lightcoral;
-}
-
-.site-title-section h2{
-    margin: 0;
-}
-
-/* --------------- Header -------------------------------------- */
-.header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 60px;
-    width: 100%;
-    padding: 0 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #4056A1;
-    color: #D79922;
-    box-shadow: 0px 5px 6px 1px rgba(197,203,227,0.12);
-    font-family: "Delius";
-} 
+}
 
-/* .imageUser {
-    width: 150px;
-    height: 150px;
-    background-color: black;
-    margin: 0 auto;
-} */
 
-.site-name{
+/* ------------------------- Fonts supplementaires ------------------------ */
+@font-face{
     font-family: 'Caveat-Bold';
-    font-size: 2em;
-    flex: 2;
-    padding-right: 50px;
+    src: url("../fonts/Caveat-Bold.ttf");
 }
 
-.menu{
-    flex: 5;
-    padding-bottom: 5px;
+@font-face{
+    font-family: 'Delius';
+    src: url("../fonts/Delius-Regular.ttf");
 }
 
-nav ul{
-    align-items: center;
-    list-style-type: none;
-    margin: 0 50px;
-    padding: 0 20px;
-    position: fixed; 
-    overflow: auto;
-}
-
-nav li{
-    display: inline-block;
-}
-
-nav li a{
-    padding: 0 25px;
-    text-decoration: none;
-}
-
-nav li a:hover{
-    background-color: aliceblue;
-}
-
-nav li a:active{
-    background-color: grey;
-    color: aliceblue;
-}
-
-.username-section{
-    text-align: right;
-    flex: 1;
-}
-
-.logout-link{
-    text-decoration: none;
-    padding-left: 15px;
-    flex: 1;
-}
-
-a:visited { 
-    text-decoration: none;  
-    color: #D79922;
+@font-face{
+    font-family: 'Montserrat';
+    src: url("../fonts/Montserrat-Regular.ttf");
 }

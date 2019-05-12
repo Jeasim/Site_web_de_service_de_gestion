@@ -10,14 +10,12 @@
 </head>
 <body>
 
-	<!-- Pour les pages où l'usager est connecté -->
 	<?php
 		if ($action->isLoggedIn()) {
 	?>
 
 		<div class="header">	
 			<div class="site-name">COUPLING OF THINGS</div>	
-			<!-- <div class="imageUser"></div> -->
 			<div class="menu">
 				<nav>
 					<ul>
@@ -34,14 +32,14 @@
 			<a href="?logout=true" class="logout-link">| Déconnexion |</a>
 		</div>	
 
-		<!-- Pour les pages accueils, login et signup  -->
+	
 	<?php
 		}
 		else {
 	?>
 
 		<div class="index-menu">
-			<h2><a href="index.php">Coupling of things</a></h2>
+			<h2><a href="index.php" class="site-name">Coupling of things</a></h2>
 			<nav>
 				<ul>
 					<li><a href="login.php">Se connecter</a></li>
@@ -53,15 +51,8 @@
 	<?php
 		}
 	?>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-	
-	
 
+	<div class="body-wrapper">
+					
+		<h1 class="page-title"> <?= $action->getPageTitle() ?> </h1>
+					

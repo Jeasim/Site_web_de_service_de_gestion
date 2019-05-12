@@ -7,6 +7,18 @@
 ?>
 <script src="js/lists.js"></script>
 
+<div class="btn-group-lists">
+
+	<div class="btn-VoirListes">Voir listes</div>
+	<div class="btn-AjouterListe">Ajouter une liste</div>
+
+</div>
+
+
+
+
+
+
 <div class="all-lists">
 	
 	<template id="list-template">
