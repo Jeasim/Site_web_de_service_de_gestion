@@ -15,6 +15,17 @@
 			return $result;
 		}
 
+		private static function selectWith2Constraints($table, $field1, $constraint1, $field2, $constraint2){
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT * FROM $table WHERE $field1 = ? AND $field2 = ?");
+            $statement->bind_param("ss", $constraint1, $constraint2);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+			
+			return $result;
+		}
+
 		public static function insertNewUser($username, $firstname, $lastname, $email, $password) {
 			$connection = Connection::getConnection();
 
@@ -46,6 +57,11 @@
 			return self::checkValidity($result);
 		}
 
+		public static function verifyListTitle($listTitle){
+			$result = self::selectWith2Constraints("lists", "title", $listTitle, "id_owner", $_SESSION["user_id"]);
+			return self::checkValidity($result);
+		}
+
 		public static function verifyPassword($username, $password) {
 			$result = self::select("users", "username", $username);
 			$hashedPassword = self::fetchData($result, "pwd");
@@ -61,5 +77,10 @@
 		public static function getFirstname($username) {
 			$selectResult = self::select("users", "username", $username);
 			return self::fetchData($selectResult, "firstname");
+		}
+
+		public static function getUserId($username) {
+			$selectResult = self::select("users", "username", $username);
+			return self::fetchData($selectResult, "id");
 		}
 	}

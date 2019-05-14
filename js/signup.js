@@ -67,7 +67,7 @@ const checkMatchingPasswords = () => {
 
 const checkValidity = (validity, node) => {
 
-	if(validity != "valide"){
+	if(validity != "valid"){
 		wrongInputField(validity, node);
 	}
 	else{

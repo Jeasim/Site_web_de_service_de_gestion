@@ -54,5 +54,5 @@
 
 	<div class="body-wrapper">
 					
-		<h1 class="page-title"> <?= $action->getPageTitle() ?> </h1>
+		<h1 class="page-title"> <?=$action->getPageTitle()?> </h1>
 					

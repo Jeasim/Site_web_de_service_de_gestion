@@ -32,7 +32,7 @@
 	<div id="validation-info">
 		<?php if($action->wrongPassword){
 			?> 
-			Mot de passe invalide
+			Mot de passe invalid
 			<?php
 			} elseif($action->wrongUsername){
 			?> 

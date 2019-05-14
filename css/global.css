@@ -53,7 +53,8 @@ body {
 }
 
 .body-wrapper{
-    margin-top: 100px;
+    margin-top: 75px;
+    height: 100%;
 }
 
 /* ------------------------- Header --------------------------------------- */
@@ -71,11 +72,12 @@ body {
     color: #D79922;
     box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.66);
     font-family: "Montserrat";
+    z-index: 1;
 } 
 
 .site-name{
     font-family: 'Caveat-Bold';
-    font-size: 2em;
+    font-size: 1.8em;
     flex: 2;
     padding-right: 40px;
 }
@@ -133,6 +135,7 @@ a:visited {
 .page-title{
     font-size: 2em;
     text-align: center;
+    color: #4056A1;
 }
 
 
@@ -193,7 +196,7 @@ a:visited {
     text-align: center;
     padding: 8px;
     margin: 10px 0;
-    border: 2px solid #C5CBE3;
+    border: 1px solid #4056A1;
     border-radius: 50px;
     cursor: pointer;
 }
@@ -203,8 +206,46 @@ a:visited {
     background-color: #4056A1;
 }
 
+.new-list{
+    display: none;
+    min-height: 500px;
+    width: 300px;
+    position: relative;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    text-align: center;
+    overflow-wrap: word-break;
+    box-shadow: 5px 5px 3px 1px rgba(0,0,0,0.75);
+}
 
+.new-list p:first-child{
+    text-align: left;
+    font-size: 0.8em;
+}
 
+.list{
+    padding: 10px 50px;
+}
+
+.list-title{
+    font-size: 1.5em;
+    padding: 20px;
+    text-decoration: underline;
+}
+
+#new-list-name{
+    margin: 15px auto;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+#sortable li span { 
+    position: absolute; 
+    margin-left: -1.3em; 
+}
 
 
 /*----------------- Boites de login / signup ------------------------------------*/

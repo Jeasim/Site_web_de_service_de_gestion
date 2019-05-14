@@ -13,7 +13,7 @@ class CheckMatchingPasswordsAction extends CommonAction {
 
         if(!empty($_POST["password1"]) && !empty($_POST["password2"])) {
             if($_POST["password1"] === $_POST["password2"]){
-                $this->validity = "valide";
+                $this->validity = "valid";
             }
             else{
                 $this->validity = "Les mots de passe doivent être identiques";

@@ -43,6 +43,10 @@
 			return empty($_SESSION["firstname"]) ? "Invité" : $_SESSION["firstname"];
 		}
 
+		// public function getUserId() {
+		// 	return $_SESSION["user_id"];
+		// }
+
 		public function isLoggedIn() {
 			return $_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC;
 		}

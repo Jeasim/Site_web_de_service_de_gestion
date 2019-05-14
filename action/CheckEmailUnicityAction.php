@@ -14,7 +14,7 @@ class CheckEmailUnicityAction extends CommonAction {
 
         if(isset($_POST["email"])) {
             if(!UserDAO::verifyEmail($_POST["email"])){
-                $this->validity = "valide";
+                $this->validity = "valid";
             }
             else{
                 $this->validity = "Adresse courriel est déjà utilisé";

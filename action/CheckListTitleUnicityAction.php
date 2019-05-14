@@ -2,7 +2,7 @@
     require_once("action/CommonAction.php");
     require_once("action/DAO/UserDAO.php");
 
-class CheckUsernameUnicityAction extends CommonAction {
+class CheckListTitleUnicityAction extends CommonAction {
 
     public $validity;
 
@@ -12,12 +12,12 @@ class CheckUsernameUnicityAction extends CommonAction {
 
     protected function executeAction() {
 
-        if (isset($_POST["username"])) {
-            if(!UserDAO::verifyUsername($_POST["username"])){
+        if (isset($_POST["listTitle"])) {
+            if(!UserDAO::verifyListTitle($_POST["listTitle"])){
                 $this->validity = "valid";
             }
             else{
-                $this->validity = "Nom d'utilisateur déjà utilisé";
+                $this->validity = "Cette liste existe déjà";
             }
         }
     }
