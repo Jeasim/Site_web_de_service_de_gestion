@@ -38,6 +38,37 @@
 
 			return $result;
 		}
+
+
+		public static function insertNewList($userID, $title) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("INSERT INTO lists (id_owner, title) VALUES (?, ?)");
+			$statement->bind_param("is", $userID, $title);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			return $result;
+		}
+
+		public static function insertNewListElement($listTitle, $element, $userID) {
+			$connection = Connection::getConnection();
+
+			$listIDResult = self::select("lists", "title", $listTitle);
+			$listID = self::fetchData($listIDResult, "id");
+
+			$statement = $connection->prepare("INSERT INTO list_elements (id_owner, element, id_list) VALUES (?, ?, ?)");
+			$statement->bind_param("isi", $userID, $element, $listID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			return $result;
+		}
+
+
+
 		
 		private static function fetchData($result, $field){
 			while($row = $result->fetch_assoc()) {
@@ -52,7 +83,6 @@
 		}
 
 		public static function verifyUsername($username) {
-			
 			$result = self::select("users", "username", $username);
 			return self::checkValidity($result);
 		}

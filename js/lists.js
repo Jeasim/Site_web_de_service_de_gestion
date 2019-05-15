@@ -1,22 +1,38 @@
-let addListBtn = null;
-let newList = null;
-let listTitleInputNode = null;
-let listTitleNode = null;
+let addListBtn 				= null;
+let viewListsBtn 			= null;
+let newList 				= null;
+let list 					= null;
+let listTitleInputNode 		= null;
+let listTitleNode 			= null;
 let newListElementInputNode = null;
-let btnSubmitList = null;
+let btnSubmitList 			= null;
+
+
 
 window.onload = () => {
-    addListBtn = document.querySelector(".add-list-button");
-	newList = document.querySelector(".new-list");
-	listTitleInputNode =  document.getElementById("new-list-name");
-	newListElementInputNode = document.getElementById("new-list-element-input");
-	listTitleNode = document.querySelector(".list-title");
-	btnSubmitList = document.querySelector(".btn-submit-list");
-	btnSubmitList.addEventListener("click", submitNewList);
+	initializePageElements();
 }
 
-const addList = () => {
-    newList.style.display = "block";
+const addListMode = () => {
+	newList.style.display = "block";
+	addListBtn.style.color = "#C5CBE3";
+	addListBtn.style.backgroundColor = "#4056A1";
+}
+
+const viewListsMode = () => {
+	newList.style.display = "block";
+	addListBtn.style.color = "#C5CBE3";
+	addListBtn.style.backgroundColor = "#4056A1";
+}
+
+const resetNewList = () => {
+	listTitleInputNode.style.display = "block";
+	list.style.display = "none";
+	listTitleInputNode.innerHTML = " ";
+	listTitleNode.innerHTML = " ";
+	newListElementInputNode.innerHTML = " ";
+	resetListElements();
+
 }
 
 
@@ -49,8 +65,6 @@ const startNewList = () => {
 	giveListTitle();
 	switchInputs();
 	document.querySelector(".btn-submit-list").style.display = "block";
-	console.log("icic");
-	
 }
 
 const createNewListNode = () =>{
@@ -65,7 +79,6 @@ const createNewListElementNode = (input) =>{
 	let childNode = document.createElement("li");
 	childNode.innerHTML = input;
 	parentNode.insertBefore(childNode, parentNode.lastElementChild);
-	
 }
 
 const giveListTitle = () => {
@@ -75,7 +88,7 @@ const giveListTitle = () => {
 
 const switchInputs = () => {
 	listTitleInputNode.style.display = "none";
-	document.querySelector(".list").style.display = "block";
+	list.style.display = "block";
 }
 
 const manageInput = () =>{
@@ -108,4 +121,55 @@ const rightInputField = () => {
 
 const submitNewList = () =>{
 	
+	let listTitle = listTitleNode.innerHTML; 
+	let listElementsArray = getArrayOfListElements();
+
+	$.ajax({
+		url : "insertNewList.php",
+		type: "POST",
+		data: {
+			title : listTitle,
+			elements : listElementsArray
+		}
+	})
+	.done(response => {
+		message = JSON.parse(response);
+
+		resetNewList();
+	})
 } 
+
+const getArrayOfListElements = () =>{
+
+	let listElementsArray = [];
+
+	for (let index = 1; index < list.childElementCount; index++) {
+		const listElement = list.querySelector("li:nth-of-type(" + index + ")");
+		listElementsArray.push(listElement.innerHTML);
+
+	}
+
+	return listElementsArray;
+}
+
+const resetListElements = () => {
+	for (let index = list.childElementCount - 1; index >= 1; index--) {
+		const listElement = list.querySelector("li:nth-of-type(" + index + ")");
+		list.removeChild(listElement);
+	}
+}
+
+
+const initializePageElements = () => {
+	addListBtn = document.querySelector(".add-list-btn");
+	viewListsBtn = document.querySelector(".view-lists-btn");
+
+	newList = document.querySelector(".new-list");
+	list = document.querySelector(".list");
+
+	listTitleInputNode =  document.getElementById("new-list-name");
+	newListElementInputNode = document.getElementById("new-list-element-input");
+
+	listTitleNode = document.querySelector(".list-title");
+	btnSubmitList = document.querySelector(".btn-submit-list");
+}

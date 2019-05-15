@@ -7,14 +7,12 @@
 ?>
 <script src="js/lists.js"></script>
 <script src="js/jquerry.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div class="btn-group-lists">
 
-	<div class="btn-VoirListes">voir listes</div>
-	<div class="btn-AjouterListe" onclick="addList()">ajouter une liste</div>
+	<div class="view-lists-btn" onclick="viewListsMode()">voir listes</div>
+	<div class="add-list-btn" onclick="addListMode()">ajouter une liste</div>
 
 </div>
 
@@ -35,7 +33,7 @@
 		<li id="new-list-element"><input type="text" name="new-list-element-input" id="new-list-element-input" onkeypress="addElementList()" placeholder="Nouvelle élément" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nouvelle élément'"></li>
 	</ul>
 	<div id="validation-info"></div>
-	<div class="btn-submit-list">Créer liste</div>
+	<div class="btn-submit-list" onclick="submitNewList()">Créer liste</div>
 </div>
 
 
