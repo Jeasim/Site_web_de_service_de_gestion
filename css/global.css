@@ -208,25 +208,32 @@ a:visited {
 
 .new-list{
     display: none;
-    min-height: 500px;
-    width: 300px;
+    min-height: 350px;
+    width: 400px;
     position: relative;
     margin: 20px auto;
     padding: 10px;
+    padding-bottom: 75px;
     background-color: white;
     border: 1px solid #ccc;
     text-align: center;
-    overflow-wrap: word-break;
     box-shadow: 5px 5px 3px 1px rgba(0,0,0,0.75);
 }
 
 .new-list p:first-child{
     text-align: left;
-    font-size: 0.8em;
+    font-size: 0.7em;
 }
 
 .list{
+    display: none;
     padding: 10px 50px;
+    overflow-wrap: break-word;
+}
+
+.list li{
+    padding: 5px;
+    text-align: left;
 }
 
 .list-title{
@@ -242,9 +249,30 @@ a:visited {
     border-bottom: 1px solid black;
 }
 
-#sortable li span { 
-    position: absolute; 
-    margin-left: -1.3em; 
+#new-list-element-input{
+    width: 99%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.btn-submit-list{
+    display: none;
+    position: absolute;
+    bottom: 2%;
+    left: 0;
+    right: 0;
+    width: 80%;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #F13C20;
+    color: #D79922;
+    border-radius: 20px;
+}
+
+.btn-submit-list:hover{
+    background-color: #F13C20;
 }
 
 

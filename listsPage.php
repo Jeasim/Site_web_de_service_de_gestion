@@ -30,12 +30,15 @@
 <div class="new-list">
 	<p>Nouvelle liste</p>
 	<p class="list-title"></p>
-	<ul class="list sortable"></ul>
 	<input type="text" name="new-list-name" id="new-list-name" onkeypress="manageInput()" placeholder="Titre de la liste" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Titre de la liste'" >
+	<ul class="list">
+		<li id="new-list-element"><input type="text" name="new-list-element-input" id="new-list-element-input" onkeypress="addElementList()" placeholder="Nouvelle élément" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nouvelle élément'"></li>
+	</ul>
 	<div id="validation-info"></div>
-	<input type="text" name="new-list-elelment" id="new-list-elelment" onkeypress="addElementList()" placeholder="Nouvelle élément" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nouvelle élément'" >
-
+	<div class="btn-submit-list">Créer liste</div>
 </div>
+
+
 
 
 <?php

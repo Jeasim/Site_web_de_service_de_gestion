@@ -3,15 +3,16 @@ let newList = null;
 let listTitleInputNode = null;
 let listTitleNode = null;
 let newListElementInputNode = null;
+let btnSubmitList = null;
 
 window.onload = () => {
     addListBtn = document.querySelector(".add-list-button");
 	newList = document.querySelector(".new-list");
 	listTitleInputNode =  document.getElementById("new-list-name");
-	newListElementInputNode = document.getElementById("new-list-elelment");
+	newListElementInputNode = document.getElementById("new-list-element-input");
 	listTitleNode = document.querySelector(".list-title");
-
-	newListElementInputNode.style.display = "none";
+	btnSubmitList = document.querySelector(".btn-submit-list");
+	btnSubmitList.addEventListener("click", submitNewList);
 }
 
 const addList = () => {
@@ -21,7 +22,6 @@ const addList = () => {
 
 const checkListTitleUnicity = () => {
 
-	
 	$.ajax({
 		url : "checkListTitleUnicity.php",
 		type: "POST",
@@ -48,6 +48,9 @@ const isValid = (response) => { return (response === "valid"); }
 const startNewList = () => {
 	giveListTitle();
 	switchInputs();
+	document.querySelector(".btn-submit-list").style.display = "block";
+	console.log("icic");
+	
 }
 
 const createNewListNode = () =>{
@@ -58,12 +61,11 @@ const createNewListNode = () =>{
 
 const createNewListElementNode = (input) =>{
 
-	let nodeListElement = document.createElement("li");
-	nodeListElement.innerHTML = input;
-	nodeListElement.setAttribute("class", "ui-state-default");
-	document.querySelector(".new-list ul").appendChild(nodeListElement);
-	let nodeElementSpan = docuemnt.createElement("span");
-	document.querySelector(".new-list ul li:last-child").appendChild(nodeElementSpan);
+	let parentNode = document.querySelector(".new-list ul");
+	let childNode = document.createElement("li");
+	childNode.innerHTML = input;
+	parentNode.insertBefore(childNode, parentNode.lastElementChild);
+	
 }
 
 const giveListTitle = () => {
@@ -73,7 +75,7 @@ const giveListTitle = () => {
 
 const switchInputs = () => {
 	listTitleInputNode.style.display = "none";
-	newListElementInputNode.style.display = "block";
+	document.querySelector(".list").style.display = "block";
 }
 
 const manageInput = () =>{
@@ -86,7 +88,7 @@ const addElementList = () => {
 	
 	if(isKeyPressedEnter(event.keyCode) && newListElementInputNode.value != ""){		
 		createNewListElementNode(newListElementInputNode.value);
-		newListElementInputNode.value = "";
+		newListElementInputNode.value = " ";
 	}
 }
 
@@ -104,7 +106,6 @@ const rightInputField = () => {
 	listTitleInputNode.style.backgroundColor = "#fff";
 }
 
-$( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-} );
+const submitNewList = () =>{
+	
+} 
