@@ -53,7 +53,7 @@ body {
 }
 
 .body-wrapper{
-    margin-top: 75px;
+    margin-top: 100px;
     height: 100%;
 }
 
@@ -222,8 +222,14 @@ a:visited {
 }
 
 .new-list p:first-child{
+    display: none;
     text-align: left;
     font-size: 0.7em;
+    cursor: pointer;
+}
+
+.new-list p:first-child:hover{
+    text-decoration: underline;
 }
 
 .list{
@@ -270,10 +276,12 @@ a:visited {
     border: 1px solid #F13C20;
     color: #D79922;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .btn-submit-list:hover{
     background-color: #F13C20;
+    color: #EFE2BA;
 }
 
 

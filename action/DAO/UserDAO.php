@@ -26,6 +26,17 @@
 			return $result;
 		}
 
+		private static function selectFor2Users($table, $userID, $partnerID){
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT DISTINCT * FROM $table WHERE id_owner = ? OR id_owner = ?");
+            $statement->bind_param("ii", $userID, $partnerID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+			
+			return $result;
+		}
+
 		public static function insertNewUser($username, $firstname, $lastname, $email, $password) {
 			$connection = Connection::getConnection();
 
@@ -67,12 +78,28 @@
 			return $result;
 		}
 
+		public static function fetchUsersLists($userID, $partnerID) {
+			$result = self::selectFor2Users("lists", $userID, $partnerID);
+			$listNames = self::fetchMultipleData($result, "title");
+
+			return $listNames;
+		}
 
 
-		
+
 		private static function fetchData($result, $field){
 			while($row = $result->fetch_assoc()) {
 				$data = $row[$field];
+			}
+		
+			return $data;
+		}
+
+		private static function fetchMultipleData($result, $field){
+			$data = [];
+
+			while($row = $result->fetch_assoc()) {
+				$data[] = $row[$field];
 			}
 		
 			return $data;
@@ -112,5 +139,10 @@
 		public static function getUserId($username) {
 			$selectResult = self::select("users", "username", $username);
 			return self::fetchData($selectResult, "id");
+		}
+
+		public static function getUserPartnerId($userID){
+			$selectResult = self::select("users", "id", $userID);
+			return self::fetchData($selectResult, "id_partner");
 		}
 	}

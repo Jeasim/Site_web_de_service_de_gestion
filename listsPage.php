@@ -26,7 +26,7 @@
 </div>
 
 <div class="new-list">
-	<p>Nouvelle liste</p>
+	<p onclick="resetNewList()">Réinitialiser liste</p>
 	<p class="list-title"></p>
 	<input type="text" name="new-list-name" id="new-list-name" onkeypress="manageInput()" placeholder="Titre de la liste" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Titre de la liste'" >
 	<ul class="list">
