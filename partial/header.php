@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="css/global.css">
+	<script src="js/jquerry.min.js"></script>
 	<title>Coupling of things</title>
 
 </head>

@@ -52,7 +52,9 @@
 			$_SESSION["firstname"] = UserDAO::getFirstname($_POST["username"]);
 			$_SESSION["user_id"] = UserDAO::getUserId($_POST["username"]);
 			$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
+			$_SESSION["partner_firstname"] = UserDAO::getFirstnameFromID($_SESSION["partner_id"]);
 			
+
 			header("location:home.php");
 			exit;
 		}

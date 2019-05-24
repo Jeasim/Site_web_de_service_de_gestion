@@ -3,6 +3,7 @@
 /* ------------------------- Regles generales ----------------------------- */
 /* ------------------------- Header --------------------------------------- */
 /* ------------------------- Menu Accueil --------------------------------- */
+/* ------------------------- Page Budget ---------------------------------- */
 /* ------------------------- Page Listes ---------------------------------- */
 /* ------------------------- Boites de login / singup --------------------- */
 /* ------------------------- Fonts supplementaires ------------------------ */
@@ -179,6 +180,32 @@ a:visited {
 .index-menu nav ul li:nth-of-type(2){
     border: 2px solid #F13C20;
     border-radius: 3px;
+}
+
+/* ------------------------- Page Budget -------------------------------------- */
+/* .expenses-single-line ul{
+    display: flex;
+} */
+
+.expenses-single-line{
+    display: flex;
+}
+
+.expenses-description{
+    flex: 3;
+}
+
+.expenses-price{
+    flex: 1;
+}
+
+
+.expenses-place, .expenses-owner{
+    flex: 2;
+}
+
+.section-form-new-expense{
+    margin-top: 20vh;
 }
 
 /* ------------------------- Page Listes ----------------------------------------*/

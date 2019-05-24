@@ -78,6 +78,30 @@
 			return $result;
 		}
 
+		public static function insertNewExpense($description, $place, $price, $ownerID) {
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("INSERT INTO expenses (id_owner, description, price, place) VALUES (?, ?, ?, ?)");
+			$statement->bind_param("isds", $ownerID, $description, $price, $place);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			return $result;
+		}
+
+		public static function deleteExpense($expenseID){
+			$connection = Connection::getConnection();
+
+			$statement = $connection->prepare("DELETE FROM expenses WHERE id = ?");
+			$statement->bind_param("i", $expenseID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			return $result;
+		}
+
 		public static function fetchUsersLists($userID, $partnerID) {
 			$result = self::selectFor2Users("lists", $userID, $partnerID);
 			$listNames = self::fetchMultipleData($result, "title");
@@ -100,6 +124,16 @@
 
 			while($row = $result->fetch_assoc()) {
 				$data[] = $row[$field];
+			}
+		
+			return $data;
+		}
+
+		private static function fetchAllData($result){
+			$data = [];
+			
+			while($row = $result->fetch_assoc()) {
+				$data[] = $row;
 			}
 		
 			return $data;
@@ -136,6 +170,11 @@
 			return self::fetchData($selectResult, "firstname");
 		}
 
+		public static function getFirstnameFromID($userID) {
+			$selectResult = self::select("users", "id", $userID);
+			return self::fetchData($selectResult, "firstname");
+		}
+
 		public static function getUserId($username) {
 			$selectResult = self::select("users", "username", $username);
 			return self::fetchData($selectResult, "id");
@@ -166,5 +205,18 @@
 		public static function getAllListsTitles($userID, $partnerID){
 			$selectResult =  self::selectFor2Users("lists", "id_owner", $userID, $partnerID);
 			return self::fetchMultipleData($selectResult, "title");
+		}
+
+		public static function getExpenses($userID, $partnerID){
+			$selectResult =  self::selectFor2Users("expenses", "id_owner", $userID, $partnerID);
+
+			$data = [];
+			
+			while($row = $selectResult->fetch_assoc()) {
+				$row["firstname"] =  self::getFirstnameFromID($row['id_owner']);
+				$data[] = $row;
+			}
+
+			return $data;
 		}
 	}
