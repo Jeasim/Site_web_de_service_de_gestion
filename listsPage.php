@@ -10,25 +10,30 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div class="btn-group-lists">
-
 	<div class="view-lists-btn" onclick="viewListsMode()">voir listes</div>
 	<div class="add-list-btn" onclick="addListMode()">ajouter une liste</div>
-
 </div>
 
+
 <div class="all-lists">
+
+	<div class="all-lists-title">
+		<ul>		
+		</ul>
+	</div>
 	
-	<template id="list-template">
-		<div class="list-name"></div>
-		<div class="list-elements"></div>
-	</template>
+	<div id="list-viewer">
+		<div class="viewer-list-title">
+		</div>
+		<ul class="viewer-list-element"></ul>	
+	</div>
 
 </div>
 
 <div class="new-list">
 	<p onclick="resetNewList()">Réinitialiser liste</p>
-	<p class="list-title"></p>
 	<input type="text" name="new-list-name" id="new-list-name" onkeypress="manageInput()" placeholder="Titre de la liste" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Titre de la liste'" >
+	<p class="list-title"></p>
 	<ul class="list">
 		<li id="new-list-element"><input type="text" name="new-list-element-input" id="new-list-element-input" onkeypress="addElementList()" placeholder="Nouvelle élément" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nouvelle élément'"></li>
 	</ul>

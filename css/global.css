@@ -209,7 +209,7 @@ a:visited {
 
 .new-list{
     display: none;
-    min-height: 350px;
+    height: auto;
     width: 400px;
     position: relative;
     margin: 20px auto;
@@ -284,6 +284,41 @@ a:visited {
     color: #EFE2BA;
 }
 
+.all-lists{
+    margin-top: 10vh;
+    margin-left: 12vw;
+    display: flex;
+}
+
+.lists-title{
+    flex: 1;
+    border-left: 1px solid #EFE2BA;
+}
+
+.lists-title ul{
+    list-style: none;
+}
+
+.single-list-title{
+    padding: 2vh 2vw;
+    cursor: pointer;
+    list-style: none;
+}
+
+.list-viewer{
+    flex: 5;
+}
+
+
+.btn-not-selected{
+    background-color: #C5CBE3;
+    color: #4056A1;
+}
+
+.btn-selected{
+    background-color: #4056A1;
+    color: #C5CBE3;
+}
 
 /*----------------- Boites de login / signup ------------------------------------*/
 #form {

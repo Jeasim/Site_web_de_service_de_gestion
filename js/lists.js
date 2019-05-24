@@ -10,63 +10,34 @@ let btnSubmitList 			= null;
 let btnResetList 			= null;
 
 
-
 window.onload = () => {
 	initializePageElements();	
 }
 
 const addListMode = () => {
+	switchModes(addListBtn, viewListsBtn, newList, allLists);
 	resetNewList();
-	newList.style.display = "block";
-	allLists.style.display = "none";
-	viewListsBtn.style.color = "#4056A1";
-	viewListsBtn.style.backgroundColor = "#C5CBE3";
-	addListBtn.style.color = "#C5CBE3";
-	addListBtn.style.backgroundColor = "#4056A1";
 }
 
 const viewListsMode = () => {
-	newList.style.display = "none";
-	allLists.style.display = "display";
-	addListBtn.style.color = "#4056A1";
-	addListBtn.style.backgroundColor = "#C5CBE3";
-	viewListsBtn.style.color = "#C5CBE3";
-	viewListsBtn.style.backgroundColor = "#4056A1";
-
-	fetchAllLists();
+	switchModes(viewListsBtn, addListBtn, allLists, newList);
+	resetNewList();
+	fetchAllListsTitles();
 }
+
+
 
 const resetNewList = () => {
 	listTitleInputNode.style.display = "block";
 	list.style.display = "none";
 	btnResetList.style.display = "none";
+	btnSubmitList.style.display = "none";
+	newListElementInputNode.display = "none";
 	listTitleInputNode.innerHTML = " ";
 	listTitleNode.innerHTML = " ";
 	newListElementInputNode.innerHTML = " ";
+
 	resetListElements();
-}
-
-const checkListTitleUnicity = () => {
-
-	$.ajax({
-		url : "checkListTitleUnicity.php",
-		type: "POST",
-		data: {
-			listTitle : listTitleInputNode.value
-		}
-	})
-	.done(check => {
-		response = JSON.parse(check);
-
-		if(isValid(response)){
-			rightInputField();
-			startNewList(listTitleInputNode)
-		}
-		else{
-			wrongInputField(response);
-		}
-
-	})
 }
 
 const isValid = (response) => { return (response === "valid"); } 
@@ -129,25 +100,7 @@ const rightInputField = () => {
 	listTitleInputNode.style.backgroundColor = "#fff";
 }
 
-const submitNewList = () =>{
-	
-	let listTitle = listTitleNode.innerHTML; 
-	let listElementsArray = getArrayOfListElements();
 
-	$.ajax({
-		url : "insertNewList.php",
-		type: "POST",
-		data: {
-			title : listTitle,
-			elements : listElementsArray
-		}
-	})
-	.done(response => {
-		message = JSON.parse(response);
-
-		resetNewList();
-	})
-} 
 
 const getArrayOfListElements = () =>{
 
@@ -170,6 +123,127 @@ const resetListElements = () => {
 }
 
 
+
+
+const showList = (title, list) =>{
+	let nodeTitle = document.querySelector("#list-viewer");
+	nodeTitle.innerHTML = title;
+	console.log(list);
+		
+}
+
+const showListsTitle = (listsTitles) =>{
+
+	emptyNode(allListsTitles);
+
+	listsTitles.forEach(listTitle => {
+		let titleNode = document.createElement("li");
+		titleNode.innerHTML = listTitle;
+		titleNode.setAttribute("class", "single-list-title");
+		titleNode.addEventListener("click", ()=>selectList(listTitle));
+
+		allListsTitles.appendChild(titleNode);
+	});
+}
+
+const selectList = (listTitle) =>{
+	fetchList(listTitle);
+}
+
+const emptyNode = (nodeToEmpty) =>{
+	while(nodeToEmpty.firstChild){
+		nodeToEmpty.removeChild(nodeToEmpty.firstChild);
+	}
+}  
+
+const appendListElements = (list, nodeParent) =>{
+	let charHTML = document.getElementById("list-template").innerHTML;
+
+	list.forEach(element => {
+		let node = document.createElement("li");
+		node.innerHTML = charHTML;
+
+		nodeParent.querySelector(".list-element").innerHTML = element;
+
+		nodeParent.appendChild(node);
+	});
+}
+
+
+// Requetes AJAX
+
+const fetchList = (listTitleParam) =>{	
+
+	$.ajax({
+		url : "fetchList.php",
+		type: "POST",
+		data: {
+			listTitle : listTitleParam
+		}
+	})
+	.done(result => {
+		list = JSON.parse(result);
+		showList(listTitleParam, list);				
+	})
+
+}
+
+const fetchAllListsTitles = () => {
+	$.ajax({
+		url : "fetchAllListsTitles.php",
+		type: "POST",
+		data: {}
+	})
+	.done(result => {
+		listsTitles = JSON.parse(result);		
+		showListsTitle(listsTitles);	
+	})
+}
+
+const checkListTitleUnicity = () => {
+
+	$.ajax({
+		url : "checkListTitleUnicity.php",
+		type: "POST",
+		data: {
+			listTitle : listTitleInputNode.value
+		}
+	})
+	.done(check => {
+		response = JSON.parse(check);
+
+		if(isValid(response)){
+			rightInputField();
+			startNewList(listTitleInputNode)
+		}
+		else{
+			wrongInputField(response);
+		}
+
+	})
+}
+
+const submitNewList = () =>{
+	
+	let listTitle = listTitleNode.innerHTML; 
+	let listElementsArray = getArrayOfListElements();
+
+	$.ajax({
+		url : "insertNewList.php",
+		type: "POST",
+		data: {
+			title : listTitle,
+			elements : listElementsArray
+		}
+	})
+	.done(response => {
+		message = JSON.parse(response);
+
+		resetNewList();
+	})
+} 
+
+// Fonctions utilitaires propres a la page
 const initializePageElements = () => {
 	addListBtn = document.querySelector(".add-list-btn");
 	viewListsBtn = document.querySelector(".view-lists-btn");
@@ -177,6 +251,7 @@ const initializePageElements = () => {
 	newList = document.querySelector(".new-list");
 	list = document.querySelector(".list");
 	allLists = document.querySelector(".all-lists");
+	allListsTitles = document.querySelector(".all-lists-title");
 
 	listTitleInputNode =  document.getElementById("new-list-name");
 	newListElementInputNode = document.getElementById("new-list-element-input");
@@ -186,17 +261,9 @@ const initializePageElements = () => {
 	btnResetList = document.querySelector(".new-list p:first-child");
 }
 
-
-const fetchAllLists = () => {
-	$.ajax({
-		url : "fetchAllLists.php",
-		type: "POST",
-		data: {}
-	})
-	.done(result => {
-		lists = JSON.parse(result);
-		console.log(lists);
-		console.log(result);
-		
-	})
+const switchModes = (selectedBtn, nonSelectedBtn, viewSection, hideSection) =>{
+	viewSection.style.display = "block";
+	hideSection.style.display = "none";
+	nonSelectedBtn.setAttribute("class", "btn-not-selected")
+	selectedBtn.setAttribute("class", "btn-selected");
 }

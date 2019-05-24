@@ -88,7 +88,7 @@
 
 
 		private static function fetchData($result, $field){
-			while($row = $result->fetch_assoc()) {
+			if($row = $result->fetch_assoc()) {
 				$data = $row[$field];
 			}
 		
@@ -144,5 +144,27 @@
 		public static function getUserPartnerId($userID){
 			$selectResult = self::select("users", "id", $userID);
 			return self::fetchData($selectResult, "id_partner");
+		}
+
+		public static function getListTitles($userID, $partnerID){
+			$selectResult = self::selectFor2Users("lists", "id_owner", $userID, $partnerID);
+			return self::fetchMultipleData($selectResult, "title");			
+		}
+
+		public static function getListElementsByTitle($title){
+			$listID = self::getListID($title);
+
+			$selectResult = self::select("list_elements", "id_list", $listID);
+			return self::fetchMultipleData($selectResult, "element");
+		}
+
+		public static function getListID($listTitle){
+			$selectResult = self::select("lists", "title", $listTitle);
+			return self::fetchData($selectResult, "id");
+		}
+
+		public static function getAllListsTitles($userID, $partnerID){
+			$selectResult =  self::selectFor2Users("lists", "id_owner", $userID, $partnerID);
+			return self::fetchMultipleData($selectResult, "title");
 		}
 	}
