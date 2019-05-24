@@ -64,7 +64,7 @@
 			</select>
 		</div>
 		<div class="form-single-line">
-		<button type="submit">Ajouter</button>
+		<button type="submit" onclick="addNewExpense()">Ajouter</button>
 		</div>
 		
 				
