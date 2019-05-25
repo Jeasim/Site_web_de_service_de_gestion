@@ -40,6 +40,7 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+
 /* ------------------------- Regles generales ----------------------------- */
 html{
     height: 100%;
@@ -56,6 +57,16 @@ body {
 .body-wrapper{
     margin-top: 100px;
     height: 100%;
+}
+
+.color-1{
+    background-color: #EFE2BA;
+    color: #D79922;
+}
+
+.color-2{
+    background-color: #C5CBE3;
+    color: #4056A1;
 }
 
 /* ------------------------- Header --------------------------------------- */
@@ -135,7 +146,7 @@ a:visited {
 }
 
 .page-title{
-    font-size: 2em;
+    font-size: 2.5em;
     text-align: center;
     color: #4056A1;
 }
@@ -184,41 +195,121 @@ a:visited {
 
 /* ------------------------- Page Budget -------------------------------------- */
 .expenses-list{
-    margin-top: 10vh;
+    margin: 10vh 0;
 }
 
+.list-expenses{
+    max-height: 40vh;
+    overflow: auto;
+}
+
+.sub-title{
+    margin: 5vh 3vw;
+    font-size: 1.7em; 
+    color: #D79922;
+}
+
+
 .expenses-single-line{
-    display: flex;
+    display: grid;
+    grid-template-columns: 25% 15% 20% 10% 15% 15%;
+    padding: 1vh 0;
 }
 
 .expenses-description{
-    flex: 3;
+    flex: 4;
 }
 
-.expenses-price{
+.expenses-price, .expense-date{
     flex: 1;
 }
 
 
 .expenses-place, .expenses-owner{
     flex: 2;
+    text-align: right;
 }
+
+.expenses-place{
+    text-align: center;
+}
+
 
 .section-form-new-expense{
     margin-top: 10vh;
 }
 
 .expenses-summary{
+    padding: 10vh 2vw;
     margin-top: 10vh;
 }
 
 .expense{
-    padding: 0.5vh 5vw;
+    padding: 0.5vh 2vw;
 }
 
 .money{
     text-align: right;
 }
+
+.section-flex{
+    display: flex;
+}
+
+.expenses-summary{
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+
+#first-column{
+    border-right: 2px solid black;
+}
+
+.summary-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-column div{
+    padding: 2vh 2vw;
+}
+
+.summary-column div:first-of-type{
+    border-bottom: 2px solid black;
+}
+
+.form-new-expense{
+    flex: 1;
+}
+
+.form-single-line{
+    margin: 2vh 0;
+}
+
+.form-single-line div{
+    font-size: 1.3em;
+}
+
+.form-new-expense div{
+    padding: 0 2vw;
+}
+
+.form-new-expense input{
+    width: 80%;
+    padding: 0.5vh 0;
+}
+
+.form-new-expense button{
+    display: block;
+    width: 81%;
+    height: 5vh;
+    background-color: #4056A1;
+    color: #C5CBE3;
+    border: none;
+}
+
 /* ------------------------- Page Listes ----------------------------------------*/
 .btn-group-lists{
     position: absolute;
@@ -346,7 +437,6 @@ a:visited {
 .list-viewer{
     flex: 5;
 }
-
 
 .btn-not-selected{
     background-color: #C5CBE3;

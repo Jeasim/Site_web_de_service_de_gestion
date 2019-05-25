@@ -3,7 +3,6 @@
 	
 	class UserDAO {
 		
-		
 		private static function select($table, $field, $constraint){
 			$connection = Connection::getConnection();
 			$statement = $connection->prepare("SELECT * FROM $table WHERE $field = ?");
@@ -80,11 +79,11 @@
 			return $result;
 		}
 
-		public static function insertNewExpense($description, $place, $price, $ownerID) {
+		public static function insertNewExpense($description, $place, $price, $ownerID, $date, $typeID) {
 			$connection = Connection::getConnection();
 
-			$statement = $connection->prepare("INSERT INTO expenses (id_owner, description, price, place) VALUES (?, ?, ?, ?)");
-			$statement->bind_param("isds", $ownerID, $description, $price, $place);
+			$statement = $connection->prepare("INSERT INTO expenses (id_owner, description, price, place, date_of_purchase, id_type) VALUES (?, ?, ?, ?, ?, ?)");
+			$statement->bind_param("isdssi", $ownerID, $description, $price, $place, $date, $typeID);
 			$statement->execute();
 			$result = $statement->get_result();
 			$statement->close();
@@ -95,7 +94,7 @@
 		public static function deleteExpense($expenseID){
 			$connection = Connection::getConnection();
 
-			$statement = $connection->prepare("DELETE FROM expenses (id_owner, title) VALUES (?, ?)");
+			$statement = $connection->prepare("DELETE FROM expenses WHERE id = ?");
 			$statement->bind_param("i", $expenseID);
 			$statement->execute();
 			$result = $statement->get_result();
@@ -211,7 +210,7 @@
 
 		public static function getExpenses($userID, $partnerID){
 			$connection = Connection::getConnection();
-			$statement = $connection->prepare("SELECT DISTINCT id, FORMAT(price, 2), description, place, id_owner, creation_date FROM expenses WHERE id_owner = ? OR id_owner = ?");
+			$statement = $connection->prepare("SELECT DISTINCT id, FORMAT(price, 2), description, place, id_owner, date_of_purchase, creation_date, id_type FROM expenses WHERE id_owner = ? OR id_owner = ?");
             $statement->bind_param("ii", $userID, $partnerID);
 			$statement->execute();
 			$result = $statement->get_result();
@@ -220,6 +219,7 @@
 			$data = [];
 			
 			while($row = $result->fetch_assoc()) {
+				$row["type"] = self::getTypeFromID($row["id_type"]);	
 				$row["price"] = $row["FORMAT(price, 2)"];
 				$row["firstname"] =  self::getFirstnameFromID($row['id_owner']);
 				$data[] = $row;
@@ -268,5 +268,37 @@
 			$statement->execute();
 			$result = $statement->get_result();
 			$statement->close();
+		}
+
+		public static function getTypeID($type){
+			$result = self::select("expense_types", "type", $type);
+			return self::fetchData($result, "id");
+		}
+
+		public static function getTypeFromID($typeID){
+			$result = self::select("expense_types", "id", $typeID);
+			return self::fetchData($result, "type");
+		}
+
+		public static function getExpenseTypes(){
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT * FROM expense_types");
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			$data = [];
+
+			while($row = $result->fetch_assoc()) {
+				$data[] = $row["type"];
+			}
+		
+			return $data;
+		}
+
+		public static function getExpensesByType($type){
+			$typeID = self::getTypeID($type);
+			$result = self::select("expenses", "id_type", $typeID);
+			return self::fetchAllData($result);
 		}
 }

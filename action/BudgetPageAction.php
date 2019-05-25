@@ -10,6 +10,9 @@
 		public $partnerName;
 		public $userExpensesSum;
 		public $partnerExpensesSum;
+		public $userExpensesBalance;
+		public $partnerExpensesBalance;
+		public $expenseTypes;
 
 
 
@@ -19,8 +22,10 @@
 
 		protected function executeAction() {
 			$this->expenses = UserDAO::getExpenses($_SESSION["user_id"], $_SESSION["partner_id"]);
+			$this->expenseTypes = UserDAO::getExpenseTypes();
 			$this->userExpensesSum = UserDAO::getExpensesSum($_SESSION["user_id"]);
 			$this->partnerExpensesSum = UserDAO::getExpensesSum($_SESSION["partner_id"]);
-
+			$this->userExpensesBalance = $this->userExpensesSum - $this->partnerExpensesSum;
+			$this->partnerExpensesBalance = $this->partnerExpensesSum - $this->userExpensesSum;
 		}
 	}

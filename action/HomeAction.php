@@ -22,9 +22,11 @@
 						$searchedUserID = UserDAO::getUserId($searchedUsername);
 
 						if(!UserDAO::verifyUserAlreadyPartnered($searchedUserID)){
-							$this->message = "libre";
 							UserDAO::bindPartners($_SESSION["user_id"], $searchedUserID);
-							self::reaasignPartnerValues();
+							$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
+							$_SESSION["partner_firstname"] = UserDAO::getFirstnameFromID($_SESSION["partner_id"]);
+							
+							$this->message = "Changement de partenaire effectué avec succès";
 						}
 						else{
 							$this->message = "Cet utilisatuer déjà un partenaire";
@@ -41,11 +43,7 @@
 
 			if(isset($_GET["forgetPartner"])){
 				UserDAO::unbindPartners($_SESSION["user_id"], $_SESSION["partner_id"]);
-				self::reaasignPartnerValues();
+				$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
 			}
-		}
-
-		private function reaasignPartnerValues(){
-			$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
 		}
 	}
