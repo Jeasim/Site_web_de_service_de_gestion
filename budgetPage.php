@@ -9,17 +9,15 @@
 <script src="js/budget.js"></script>
 
 	<div class="expenses-list">
-
 		<ul>
-			
 			<?php 
 				foreach ($action->expenses as $expense) {
 			?>		
 				<li class="expenses-single-line" onclick="manageExpenseOptions(<?= $expense['id'] ?>)">
-					<div class="expenses-description"> <?= $expense['description'] ?> </div>
-					<div class="expenses-price"> <?= $expense['price'] ?> </div>
-					<div class="expenses-place"> <?= $expense['place'] ?> </div>
-					<div class="expenses-owner"> <?= $expense['firstname'] ?> </div>
+					<div class="expenses-description expense"> <?= $expense['description'] ?> </div>
+					<div class="expenses-price expense money"> <?= $expense['price'] ?>$ </div>
+					<div class="expenses-place expense"> <?= $expense['place'] ?> </div>
+					<div class="expenses-owner expense"> <?= $expense['firstname'] ?> </div>
 				</li>
 
 			<?php
@@ -34,14 +32,14 @@
 	<div class="expenses-summary">
 		<div class="expenses-sum-user">
 			<div><?= $_SESSION["user_firstname"] ?></div>
-			<div id="user-sum"> <?= $action->userExpensesSum ?> </div>
+			<div class="money" id="user-sum"> <?= $action->userExpensesSum ?>$ </div>
 		</div>
 		<?php 
 			if($_SESSION["partner_id"] != 0){
 		?>
 			<div class="expenses-sum-partner">
-			<div><?= $_SESSION["user_firstname"] ?></div>
-			<div id="partner-sum"></div>
+			<div><?= $_SESSION["partner_firstname"] ?></div>
+			<div class="money" id="partner-sum"> <?= $action->partnerExpensesSum ?>$ </div>
 			</div>
 		<?php
 			}

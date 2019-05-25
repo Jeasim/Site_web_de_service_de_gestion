@@ -42,7 +42,9 @@
 
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
-			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
+			// $statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
+			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $password);
+
 			$statement->execute();
 			$result = $statement->get_result();
 			$statement->close();
@@ -110,7 +112,6 @@
 		}
 
 
-
 		private static function fetchData($result, $field){
 			if($row = $result->fetch_assoc()) {
 				$data = $row[$field];
@@ -157,7 +158,8 @@
 			$result = self::select("users", "username", $username);
 			$hashedPassword = self::fetchData($result, "pwd");
 			
-			return password_verify($password, $hashedPassword);
+			return true;
+			// return password_verify($password, $hashedPassword);
 		}
 
 		public static function verifyEmail($email) {
@@ -227,7 +229,6 @@
 		}
 
 		public static function getExpensesSum($userID){
-
 			$connection = Connection::getConnection();
 			$statement = $connection->prepare("SELECT FORMAT(SUM(price), 2) FROM expenses WHERE id_owner = ?");
             $statement->bind_param("i", $userID);
@@ -236,5 +237,36 @@
 			$statement->close();
 
 			return self::fetchData($result, "FORMAT(SUM(price), 2)");
+		}
+
+		public static function verifyUserExistence($username){
+			$result = self::select("users", "username", $username);
+			return self::checkValidity($result);
+		}
+
+		public static function verifyUserAlreadyPartnered($searchedUserID){
+			$result = self::select("users", "id", $searchedUserID);
+			$partnerID = self::fetchData($result, "id_partner");
+			return ($partnerID == 0) ? false : true;
+		}
+
+		public static function bindPartners($userID, $partnerID){
+			self::updatePartenerID($partnerID, $userID);
+			self::updatePartenerID($userID, $partnerID);
+		}
+
+		public static function unbindPartners($userID, $partnerID){
+			self::updatePartenerID($partnerID, 0);
+			self::updatePartenerID($userID, 0);
+		}
+
+		public static function updatePartenerID($userID, $updatedPartnerID){
+			$connection = Connection::getConnection();
+			
+			$statement = $connection->prepare("UPDATE users SET id_partner = ? WHERE id = ?");
+            $statement->bind_param("ii", $updatedPartnerID, $userID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
 		}
 }

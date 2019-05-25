@@ -183,9 +183,9 @@ a:visited {
 }
 
 /* ------------------------- Page Budget -------------------------------------- */
-/* .expenses-single-line ul{
-    display: flex;
-} */
+.expenses-list{
+    margin-top: 10vh;
+}
 
 .expenses-single-line{
     display: flex;
@@ -205,9 +205,20 @@ a:visited {
 }
 
 .section-form-new-expense{
-    margin-top: 20vh;
+    margin-top: 10vh;
 }
 
+.expenses-summary{
+    margin-top: 10vh;
+}
+
+.expense{
+    padding: 0.5vh 5vw;
+}
+
+.money{
+    text-align: right;
+}
 /* ------------------------- Page Listes ----------------------------------------*/
 .btn-group-lists{
     position: absolute;
