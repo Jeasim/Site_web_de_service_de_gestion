@@ -38,7 +38,7 @@
 
 		private function login(){
 			$_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
-			$_SESSION["firstname"] = UserDAO::getFirstname($_POST["username"]);
+			$_SESSION["user_firstname"] = UserDAO::getFirstname($_POST["username"]);
 			$_SESSION["user_id"] = UserDAO::getUserId($_POST["username"]);
 			$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
 			header("location:home.php");

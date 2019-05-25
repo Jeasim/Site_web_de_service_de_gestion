@@ -40,7 +40,7 @@
 
 
 		public function getFirstname() {
-			return empty($_SESSION["firstname"]) ? "Invité" : $_SESSION["firstname"];
+			return empty($_SESSION["user_firstname"]) ? "Invité" : $_SESSION["user_firstname"];
 		}
 
 		// public function getUserId() {

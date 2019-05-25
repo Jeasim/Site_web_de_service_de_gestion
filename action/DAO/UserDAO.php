@@ -93,7 +93,7 @@
 		public static function deleteExpense($expenseID){
 			$connection = Connection::getConnection();
 
-			$statement = $connection->prepare("DELETE FROM expenses WHERE id = ?");
+			$statement = $connection->prepare("DELETE FROM expenses (id_owner, title) VALUES (?, ?)");
 			$statement->bind_param("i", $expenseID);
 			$statement->execute();
 			$result = $statement->get_result();
@@ -208,15 +208,33 @@
 		}
 
 		public static function getExpenses($userID, $partnerID){
-			$selectResult =  self::selectFor2Users("expenses", "id_owner", $userID, $partnerID);
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT DISTINCT id, FORMAT(price, 2), description, place, id_owner, creation_date FROM expenses WHERE id_owner = ? OR id_owner = ?");
+            $statement->bind_param("ii", $userID, $partnerID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
 
 			$data = [];
 			
-			while($row = $selectResult->fetch_assoc()) {
+			while($row = $result->fetch_assoc()) {
+				$row["price"] = $row["FORMAT(price, 2)"];
 				$row["firstname"] =  self::getFirstnameFromID($row['id_owner']);
 				$data[] = $row;
 			}
 
 			return $data;
 		}
-	}
+
+		public static function getExpensesSum($userID){
+
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT FORMAT(SUM(price), 2) FROM expenses WHERE id_owner = ?");
+            $statement->bind_param("i", $userID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			return self::fetchData($result, "FORMAT(SUM(price), 2)");
+		}
+}

@@ -41,6 +41,6 @@ const deleteExpense = (expenseIDParam) =>{
 	})
 	.done(response => {
 		message = JSON.parse(response);
-
+        location.reload();
 	})
 }

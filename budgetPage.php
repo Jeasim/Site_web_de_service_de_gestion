@@ -32,7 +32,20 @@
 	</div>
 
 	<div class="expenses-summary">
-		
+		<div class="expenses-sum-user">
+			<div><?= $_SESSION["user_firstname"] ?></div>
+			<div id="user-sum"> <?= $action->userExpensesSum ?> </div>
+		</div>
+		<?php 
+			if($_SESSION["partner_id"] != 0){
+		?>
+			<div class="expenses-sum-partner">
+			<div><?= $_SESSION["user_firstname"] ?></div>
+			<div id="partner-sum"></div>
+			</div>
+		<?php
+			}
+		?>
 	</div>
 
 
@@ -53,7 +66,7 @@
 		<div class="form-single-line">
 			<div>Acheteur</div>
 			<select name="new-expense-owner" id="">
-				<option value="<?= $_SESSION["user_id"] ?>"><?= $_SESSION["firstname"] ?></option>
+				<option value="<?= $_SESSION["user_id"] ?>"><?= $_SESSION["user_firstname"] ?></option>
 				<?php 
 					if($_SESSION["partner_id"] != 0){
 				?>
