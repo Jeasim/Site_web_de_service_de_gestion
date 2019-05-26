@@ -6,8 +6,8 @@
 	require_once("partial/header.php");
 ?>
 
-<div id="form">
-	<h1>Re-bienvenue!</h1>
+<div class="form">
+	<h2>Re-bienvenue!</h2>
 	<form action="login.php" method="post">
 		<div class="form-singleLine">
 			<div class="form-label">

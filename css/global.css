@@ -7,6 +7,7 @@
 /* ------------------------- Page Listes ---------------------------------- */
 /* ------------------------- Boites de login / singup --------------------- */
 /* ------------------------- Fonts supplementaires ------------------------ */
+/* ------------------------- CSS importé ---------------------------------- */
 /* ######################################################################## */
 
 
@@ -105,7 +106,7 @@ body {
     padding-bottom: 5px;
 }
 
-nav ul{
+#menu-header{
     align-items: center;
     list-style-type: none;
     margin: 0 50px;
@@ -114,21 +115,22 @@ nav ul{
     overflow: auto;
 }
 
-nav li{
+.btn-header{
     display: inline-block;
 }
 
-nav li a{
+.btn-header a{
     color: #EFE2BA;
     padding: 0 25px;
     text-decoration: none;
 }
 
-nav li a:hover{
+.btn-header a:hover{
     background-color: aliceblue;
+    color: #D79922;
 }
 
-nav li a:active{
+.btn-header a:active{
     background-color: grey;
     color: aliceblue;
 }
@@ -155,8 +157,21 @@ a:visited {
     color: #4056A1;
 }
 
+#btn-settings{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#btn-settings:hover{
+    text-decoration: none;
+}
 
 /* ------------------------- Menu Accueil --------------------------------- */
+#presentation-title{
+    color: #4056A1;
+    font-size: 2em;
+}
+
 .index-menu{
     margin: 30px 0;
 }
@@ -197,9 +212,65 @@ a:visited {
     border-radius: 3px;
 }
 
+.index-menu-accueil h2{
+    flex: 3;
+    font-size: 2.5em;
+    padding: 5vh 5vw;
+}
+
+.index-menu-accueil nav{
+    margin-right: 10vw;
+    text-align: center;
+    padding: 5vh 5vw;
+    flex: 1;
+}
+
+#home-header{
+    list-style: none;
+}
+
+.home-btn{
+    padding: 3vh 0;
+    font-size: 1.5em;
+}
+
+.home-btn:nth-of-type(2):hover{
+    background-color: #EFE2BA;
+}
+
+.home-btn:nth-of-type(2){
+    border: 2px solid #D79922;
+    border-radius: 1em;
+}
+
+#btn-login, #btn-signup{
+    text-decoration: none;
+}
+
+#btn-login:hover{
+    background-color: #F1F0EB;
+}
+
+#btn-signup:hover{
+    background-color: #EFE2BA;
+}
+
 /* ------------------------- Page Budget ---------------------------------- */
 .expenses-list{
     margin: 10vh 0;
+}
+
+#expenses-complete-array{
+    border: 1px solid black;
+}
+
+.column-description{
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+#column-description-last{
+    border-right: none;
 }
 
 .list-expenses{
@@ -240,7 +311,7 @@ a:visited {
 
 
 .section-form-new-expense{
-    margin-top: 10vh;
+    margin-top: 1
 }
 
 .expenses-summary{
@@ -258,7 +329,7 @@ a:visited {
 
 .expenses-summary{
     flex: 1;
-    margin: 0;
+    margin-left: 10vw;
     padding: 0;
 }
 
@@ -280,8 +351,9 @@ a:visited {
     border-bottom: 2px solid black;
 }
 
-.form-new-expense{
+#form-new-expense{
     flex: 1;
+    padding: 1em;
 }
 
 .form-single-line{
@@ -481,20 +553,21 @@ a:visited {
 }
 
 /*----------------- Boites de login / signup -------------------------------*/
-#form {
-    margin: 75px auto;
-    border:1px solid #D79922;
-    border-radius: 5px;
+.form {
+    margin: 0 auto 10vh auto;
+    border: 1px solid #D79922;
+    border-radius: 1.5em;
 	padding: 3em;
     max-width: 600px;
     box-shadow: 1px 1px #888888;
-    background-color: #EFE2BA;
+    background-color: #F1F0EB;
 }
 
-#form h1{
+.form h2{
     text-align: center;
     margin-top: 0;
     margin-bottom: 50px;
+    font-size: 2em;
 }
 
 .form-singleLine{
@@ -508,7 +581,7 @@ a:visited {
 }
 
 .form-label{
-	flex: 3;
+	flex: 2;
 	text-align: right;
 	margin-right: 10px;
     font-weight: bold;
@@ -516,7 +589,7 @@ a:visited {
 }
 
 .form-input{
-    flex: 4;
+    flex: 3;
 }
 
 .input{
@@ -538,15 +611,16 @@ a:visited {
 .form-submit{
     margin: 15px 0;
     width: 100%;
+    height: 100%;
     padding: 8px 8px;
     cursor: pointer;
-    background-color: #C5CBE3;
+    background-color: #4056A1;
     color: #EFE2BA;
     border: 0;
 }
 
 .form-submit:hover{
-    background-color: #4056A1;
+    background-color: #F13C20;
 }
 
 
@@ -565,3 +639,27 @@ a:visited {
     font-family: 'Montserrat';
     src: url("../fonts/Montserrat-Regular.ttf");
 }
+
+/* ------------------------- CSS importé ---------------------------------- */
+/* Pour un scrollbar different */
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ccc; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+  }

@@ -12,62 +12,65 @@
 
 	<h2 class="sub-title">Liste des dépenses</h2>
 
-	<ul class="list-expenses"> 
-		<li class="expenses-single-line">
-			<div class="expenses-description expense">Description</div>
-			<div class="expenses-type expense">Type</div>
-			<div class="expenses-place expense">Endroit</div>
-			<div class="expenses-price expense">Montant</div>
-			<div class="expenses-date expense">Date</div>
-			<div class="expenses-owner expense">Acheteur</div>
-		</li>
+	<div id="expenses-complete-array">
+		<ul class="list-expenses"> 
+			<li class="expenses-single-line">
+				<div class="column-description expense">Description</div>
+				<div class="column-description expense">Type</div>
+				<div class="column-description expense">Endroit</div>
+				<div class="column-description expense">Montant</div>
+				<div class="column-description expense">Date</div>
+				<div class="column-description expense" id="column-description-last">Acheteur</div>
+			</li>
+		</ul>
+		<ul class="list-expenses"> 
+			<?php 
+				foreach ($action->expenses as $expense) {
+					if($expense['id_owner'] == $_SESSION["user_id"]){
 
-		<?php 
-			foreach ($action->expenses as $expense) {
-				if($expense['id_owner'] == $_SESSION["user_id"]){
-
-			?>		
-					<div class="color-1">
-			<?php
+				?>		
+						<div class="color-1">
+				<?php
+					}
+				else{
+				?>
+						<div class="color-2">
+				<?php
 				}
-			else{
-			?>
-					<div class="color-2">
+				?>	
+					<li class="expenses-single-line" onclick="manageExpenseOptions(<?= $expense['id'] ?>)">
+						<div class="expenses-description expense"> <?= $expense['description'] ?> </div>
+						<div class="expenses-type expense"> <?= $expense['type'] ?> </div>
+						<div class="expenses-place expense"> <?= $expense['place'] ?> </div>
+						<div class="expenses-price expense money"> <?= $expense['price'] ?>$ </div>
+						<div class="expenses-date expense"> <?= $expense['date_of_purchase'] ?> </div>
+						<div class="expenses-owner expense"> <?= $expense['firstname'] ?> </div>
+					</li>
+				</div>
 			<?php
 			}
-			?>	
-				<li class="expenses-single-line" onclick="manageExpenseOptions(<?= $expense['id'] ?>)">
-					<div class="expenses-description expense"> <?= $expense['description'] ?> </div>
-					<div class="expenses-type expense"> <?= $expense['type'] ?> </div>
-					<div class="expenses-place expense"> <?= $expense['place'] ?> </div>
-					<div class="expenses-price expense money"> <?= $expense['price'] ?>$ </div>
-					<div class="expenses-date expense"> <?= $expense['date_of_purchase'] ?> </div>
-					<div class="expenses-owner expense"> <?= $expense['firstname'] ?> </div>
-				</li>
-			</div>
-		<?php
-		}
-		
-		?>
-	</ul>
+			
+			?>
+		</ul>
+	</div>
 
 </div>
 
 <div class="section-flex">
 	
-	<div class="form-new-expense">
+	<div class="form" id="form-new-expense">
 
 		<h2 class="sub-title">Ajouter une dépenses</h2>
 
-		<div class="form-single-line">
-			<div>Decription</div>
-			<input type="text" name="new-expense-description">
+		<div class="form-singleLine">
+			<div class="form-label">Decription</div>
+			<input type="text" name="new-expense-description" class="form-input">
 		</div>
 
 		
-		<div class="form-single-line">
-			<div>Type d'achat</div>
-			<select name="new-expense-type" id="expense-type-select">
+		<div class="form-singleLine">
+			<div class="form-label">Type d'achat</div>
+			<select name="new-expense-type" id="expense-type-select" class="form-input">
 
 				<?php 
 					foreach ($action->expenseTypes as $expenseType) {
@@ -80,19 +83,19 @@
 			</select>
 		</div>
 
-		<div class="form-single-line">
-			<div>Endroit de l'achat</div>
-			<input type="text" name="new-expense-place">
+		<div class="form-singleLine">
+			<div class="form-label">Endroit de l'achat</div>
+			<input type="text" name="new-expense-place" class="form-input">
 		</div>
 
-		<div class="form-single-line">
-			<div>Coût</div>
-			<input type="text"name="new-expense-price">
+		<div class="form-singleLine">
+			<div class="form-label">Coût</div>
+			<input type="text"name="new-expense-price" class="form-input">
 		</div>
 
-		<div class="form-single-line">
-			<div>Acheteur</div>
-			<select name="new-expense-owner" id="expense-owner-select">
+		<div class="form-singleLine">
+			<div class="form-label">Acheteur</div>
+			<select name="new-expense-owner" id="expense-owner-select" class="form-input">
 
 					<option value="<?= $_SESSION["user_id"] ?>"><?= $_SESSION["user_firstname"] ?></option>
 
@@ -107,13 +110,13 @@
 			</select>
 		</div>
 
-		<div class="form-single-line">
-			<div>Date de l'achat</div>
-			<input type="date" name="new-expense-date-purchase" id="new-expense-date-purchase">
+		<div class="form-singleLine">
+			<div class="form-label">Date de l'achat</div>
+			<input type="date" name="new-expense-date-purchase" id="new-expense-date-purchase" class="form-input">
 		</div>	
 
-		<div class="form-single-line">
-			<button type="submit" onclick="addNewExpense()">Ajouter</button>
+		<div class="form-singleLine">
+			<button type="submit" onclick="addNewExpense()" class="form-submit">Ajouter</button>
 		</div>	
 	</div>
 

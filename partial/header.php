@@ -19,19 +19,24 @@
 			<div class="site-name">COUPLING OF THINGS</div>	
 			<div class="menu">
 				<nav>
-					<ul>
-						<li><a href="home.php">Home</a></li>
-						<li><a href="calendarPage.php">Calendrier</a></li>
-						<li><a href="budgetPage.php">Budget</a></li>
-						<li><a href="listsPage.php">Listes</a></li>
+					<ul id="menu-header">
+						<li class="btn-header"><a href="home.php">Home</a></li>
+						<li class="btn-header"><a href="calendarPage.php">Calendrier</a></li>
+						<li class="btn-header"><a href="budgetPage.php">Budget</a></li>
+						<li class="btn-header"><a href="listsPage.php">Listes</a></li>
 					</ul>
 				</nav>				
 			</div>
 			<div class="username-section">
-				<?= $action->getFirstname() ?> 
+				<a href="userSettingsPage.php" id="btn-settings"><?= $action->getFirstname() ?></a> 
 			</div>
 			<a href="?logout=true" class="logout-link">| Déconnexion |</a>
 		</div>	
+
+		
+		<div class="body-wrapper">
+					
+			<h1 class="page-title"> <?=$action->getPageTitle()?> </h1>
 
 	
 	<?php
@@ -39,21 +44,20 @@
 		else {
 	?>
 
-		<div class="index-menu">
+		<div class="index-menu-accueil section-flex">
 			<h2><a href="index.php" class="site-name">Coupling of things</a></h2>
 			<nav>
-				<ul>
-					<li><a href="login.php">Se connecter</a></li>
-					<li><a href="signup.php">S'inscrire</a></li>
+				<ul id="home-header">
+					<li class="home-btn"><a href="login.php" id="btn-login">Se connecter</a></li>
+					<li class="home-btn"><a href="signup.php" id="btn-signup">S'inscrire</a></li>
 				</ul>
 			</nav>
 		</div>
+
+		<div class="body-wrapper">
 
 	<?php
 		}
 	?>
 
-	<div class="body-wrapper">
-					
-		<h1 class="page-title"> <?=$action->getPageTitle()?> </h1>
 					

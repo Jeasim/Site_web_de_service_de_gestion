@@ -8,8 +8,8 @@
 <script src="js/signup.js"></script>
 <script src="js/jquerry.min.js"></script>
 
-<div id="form">
-	<h1>Bienvenue!</h1>
+<div class="form">
+	<h2>Bienvenue!</h2>
 	<form action="signup.php" method="post">
 		<div class="form-singleLine">
 			<div class="form-label">
