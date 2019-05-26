@@ -59,6 +59,10 @@ body {
     height: 100%;
 }
 
+.section-flex{
+    display: flex;
+}
+
 .color-1{
     background-color: #EFE2BA;
     color: #D79922;
@@ -252,10 +256,6 @@ a:visited {
     text-align: right;
 }
 
-.section-flex{
-    display: flex;
-}
-
 .expenses-summary{
     flex: 1;
     margin: 0;
@@ -417,10 +417,10 @@ a:visited {
 .all-lists{
     margin-top: 10vh;
     margin-left: 12vw;
-    display: flex;
 }
 
 .lists-title{
+    display: block;
     flex: 1;
     border-left: 1px solid #EFE2BA;
 }
@@ -430,13 +430,25 @@ a:visited {
 }
 
 .single-list-title{
-    padding: 2vh 2vw;
+    padding: 2vh 0;
     cursor: pointer;
     list-style: none;
 }
 
-.list-viewer{
-    flex: 5;
+.all-lists-title{
+    flex: 1;
+    padding-left: 1vw;
+    border-left: 2px solid #D79922;
+}
+
+#list-viewer{
+    flex: 3;
+}
+
+.viewer-list-title{
+    font-size: 1.5em;
+    text-decoration: underline;
+    text-align: center;
 }
 
 .btn-not-selected{

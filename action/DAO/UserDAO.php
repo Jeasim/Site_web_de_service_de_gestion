@@ -204,8 +204,14 @@
 		}
 
 		public static function getAllListsTitles($userID, $partnerID){
-			$selectResult =  self::selectFor2Users("lists", "id_owner", $userID, $partnerID);
-			return self::fetchMultipleData($selectResult, "title");
+			$connection = Connection::getConnection();
+			$statement = $connection->prepare("SELECT DISTINCT * FROM lists WHERE id_owner = ? OR id_owner = ?");
+            $statement->bind_param("ii", $userID, $partnerID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+
+			return self::fetchMultipleData($result, "title");
 		}
 
 		public static function getExpenses($userID, $partnerID){

@@ -14,7 +14,7 @@
 </div>
 
 
-<div class="all-lists">
+<div class="all-lists section-flex">
 
 	<div class="all-lists-title">
 		<ul>		
@@ -22,8 +22,7 @@
 	</div>
 	
 	<div id="list-viewer">
-		<div class="viewer-list-title">
-		</div>
+		<div class="viewer-list-title"></div>
 		<ul class="viewer-list-element"></ul>	
 	</div>
 

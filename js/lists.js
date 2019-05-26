@@ -16,12 +16,12 @@ window.onload = () => {
 }
 
 const addListMode = () => {
-	switchModes(addListBtn, viewListsBtn, newList, allLists);
+	switchModes(addListBtn, viewListsBtn, newList, allLists, "block");
 	resetNewList();
 }
 
 const viewListsMode = () => {
-	switchModes(viewListsBtn, addListBtn, allLists, newList);
+	switchModes(viewListsBtn, addListBtn, allLists, newList, "flex");
 	resetNewList();
 	fetchAllListsTitles();
 }
@@ -127,17 +127,15 @@ const resetListElements = () => {
 
 
 const showList = (title, list) =>{
-	let nodeTitle = document.querySelector("#list-viewer");
+	let nodeTitle = document.querySelector(".viewer-list-title");
 	nodeTitle.innerHTML = title;
-	console.log(list);
-		
 }
 
-const showListsTitle = (listsTitles) =>{
+const showListsTitle = (listTitles) =>{
 
 	emptyNode(allListsTitles);
 
-	listsTitles.forEach(listTitle => {
+	listTitles.forEach(listTitle => {
 		let titleNode = document.createElement("li");
 		titleNode.innerHTML = listTitle;
 		titleNode.setAttribute("class", "single-list-title");
@@ -262,8 +260,8 @@ const initializePageElements = () => {
 	btnResetList = document.querySelector(".new-list p:first-child");
 }
 
-const switchModes = (selectedBtn, nonSelectedBtn, viewSection, hideSection) =>{
-	viewSection.style.display = "block";
+const switchModes = (selectedBtn, nonSelectedBtn, viewSection, hideSection, displayType) =>{
+	viewSection.style.display = displayType;
 	hideSection.style.display = "none";
 	nonSelectedBtn.setAttribute("class", "btn-not-selected")
 	selectedBtn.setAttribute("class", "btn-selected");
