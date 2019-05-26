@@ -17,8 +17,6 @@
 <div class="all-lists section-flex">
 
 	<div class="all-lists-title">
-		<ul>		
-		</ul>
 	</div>
 	
 	<div id="list-viewer">

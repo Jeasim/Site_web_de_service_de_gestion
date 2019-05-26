@@ -126,9 +126,20 @@ const resetListElements = () => {
 
 
 
-const showList = (title, list) =>{
+const showList = (title, listElements) =>{
+
 	let nodeTitle = document.querySelector(".viewer-list-title");
 	nodeTitle.innerHTML = title;
+
+	let nodeListElements = document.querySelector(".viewer-list-element");
+	emptyNode(nodeListElements);
+
+	listElements.forEach(element => {
+		let nodeElement = document.createElement("li");
+		nodeElement.innerHTML = element;
+		nodeListElements.appendChild(nodeElement);
+	});
+	
 }
 
 const showListsTitle = (listTitles) =>{
