@@ -74,6 +74,33 @@ body {
     color: #4056A1;
 }
 
+.btn-group{
+    display: flex;
+}
+
+.single-btn{
+    flex: 1;
+}
+
+.btn{
+    padding: 0.2em 1em;
+    margin: 0.5em;
+    cursor: pointer;
+    border-radius: 0.5em;
+}
+
+.btn-modify{
+    background-color: #7db700;
+    color: #EFE2BA;
+    border: 1px solid #7db700;
+}
+
+.btn-delete{
+    background-color: #F13C20;
+    color: #EFE2BA;
+    border: 1px solid #EFE2BA;
+}
+
 /* ------------------------- Header --------------------------------------- */
 .header{
     position: fixed;
@@ -262,6 +289,7 @@ a:visited {
 
 #expenses-complete-array{
     border: 1px solid black;
+    border-radius: 0.3em;
 }
 
 .column-description{
@@ -321,6 +349,7 @@ a:visited {
 
 .expense{
     padding: 0.5vh 2vw;
+    cursor: pointer;
 }
 
 .money{
@@ -380,6 +409,10 @@ a:visited {
     background-color: #4056A1;
     color: #C5CBE3;
     border: none;
+}
+
+#btn-group-expenses{
+    justify-content: flex-end;
 }
 
 /* ------------------------- Page Listes -----------------------------------*/
@@ -514,6 +547,7 @@ a:visited {
 }
 
 .all-lists-title li{
+    overflow-wrap: break-word;
     padding-left: 2vw; 
     border-left: 2px solid #D79922; 
     cursor: pointer;   
@@ -617,6 +651,7 @@ a:visited {
     background-color: #4056A1;
     color: #EFE2BA;
     border: 0;
+    transition: background-color 0.5s ease;
 }
 
 .form-submit:hover{

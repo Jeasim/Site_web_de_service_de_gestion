@@ -51,6 +51,11 @@
 		</ul>
 	</div>
 
+	<div class="btn-group" id="btn-group-expenses">
+		<div class="btn btn-modify">Modifier</div>
+		<div class="btn btn-delete" onclick="deleteExpense()">Supprimer</div>
+	</div>
+
 </div>
 
 <div class="section-flex">

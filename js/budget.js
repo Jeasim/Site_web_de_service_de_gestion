@@ -1,3 +1,5 @@
+let selectedExpense = null;
+
 window.onload = () =>{
 	document.getElementById("new-expense-date-purchase").valueAsDate = new Date();
 }
@@ -9,10 +11,16 @@ const addNewExpense = () =>{
 }
 
 const manageExpenseOptions = (expenseID, node) =>{	
-	resetAllBorders();
-	node.style.border = "1px solid #F13C20";
 	
-	// deleteExpense(expenseID);
+	resetAllBorders();
+	
+	if(selectedExpense != expenseID){
+		selectedExpense = expenseID;
+		node.style.border = "1px solid #F13C20";
+	}
+	else{
+		selectedExpense = null;
+	}
 	
 }
 
@@ -20,6 +28,7 @@ const changeTypeExpense = () =>{
 	let selectedType = document.getElementById("expense-type-select-summary").value;
 	getExpensesOfType(selectedType);
 }
+
 const resetAllBorders = () =>{
 	let nodeListExepenses = document.querySelector("#expenses-ul");
 	
@@ -52,13 +61,13 @@ const insertNewExpenses = () =>{
 	})
 }
 
-const deleteExpense = (expenseIDParam) =>{
+const deleteExpense = () =>{
     
 	$.ajax({
 		url : "deleteExpense.php",
 		type: "POST",
 		data: {
-			expenseID : expenseIDParam
+			expenseID : selectedExpense
 		}
 	})
 	.done(response => {
