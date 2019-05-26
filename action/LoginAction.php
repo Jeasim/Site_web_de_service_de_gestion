@@ -16,7 +16,7 @@
 			$this->wrongPassword = false;
 
 			if($_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC){
-				header("location:home.php");
+				header("location:home");
 			}
 
 			if($this->fieldsAllFilled()){
@@ -55,7 +55,7 @@
 			$_SESSION["partner_firstname"] = UserDAO::getFirstnameFromID($_SESSION["partner_id"]);
 			
 
-			header("location:home.php");
+			header("location:home");
 			exit;
 		}
 	}

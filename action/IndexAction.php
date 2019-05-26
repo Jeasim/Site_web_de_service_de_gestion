@@ -46,7 +46,7 @@
 		private function login(){
 			$_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
 			$_SESSION["user_firstname"] = UserDAO::getFirstname($_POST["username"]);
-			header("location:home.php");
+			header("location:home");
 			exit;
 		}
 	}

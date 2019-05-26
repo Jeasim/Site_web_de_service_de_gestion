@@ -11,7 +11,7 @@
 		protected function executeAction() {
 
 			if($_SESSION["visibility"] > CommonAction::$VISIBILITY_PUBLIC){
-				header("location:home.php");
+				header("location:home");
 			}
 
 			if($this->allFieldsFilled() && $this->matchingPasswords() && $this->usernameUnicity() && $this->emailUnicity()){
@@ -41,7 +41,7 @@
 			$_SESSION["user_firstname"] = UserDAO::getFirstname($_POST["username"]);
 			$_SESSION["user_id"] = UserDAO::getUserId($_POST["username"]);
 			$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
-			header("location:home.php");
+			header("location:home");
 			exit;
 		}
 

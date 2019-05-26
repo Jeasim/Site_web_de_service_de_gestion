@@ -8,13 +8,25 @@ const addNewExpense = () =>{
     insertNewExpenses();
 }
 
-const manageExpenseOptions = (expenseID) =>{
-    deleteExpense(expenseID);
+const manageExpenseOptions = (expenseID, node) =>{	
+	resetAllBorders();
+	node.style.border = "1px solid #F13C20";
+	
+	// deleteExpense(expenseID);
+	
 }
 
 const changeTypeExpense = () =>{
 	let selectedType = document.getElementById("expense-type-select-summary").value;
 	getExpensesOfType(selectedType);
+}
+const resetAllBorders = () =>{
+	let nodeListExepenses = document.querySelector("#expenses-ul");
+	
+	for (let index = nodeListExepenses.childElementCount; index >= 1; index--) {		
+		const listElement = nodeListExepenses.querySelector("li:nth-of-type(" + index + ")");
+		listElement.style.border = "none";
+	}
 }
 
 // Requetes AJAX
@@ -66,6 +78,5 @@ const getExpensesOfType = (selectedType) =>{
 	})
 	.done(response => {
 		message = JSON.parse(response);
-		console.log(message);
 	})
 }

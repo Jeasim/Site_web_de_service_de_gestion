@@ -20,15 +20,15 @@
 			<div class="menu">
 				<nav>
 					<ul id="menu-header">
-						<li class="btn-header"><a href="home.php">Home</a></li>
-						<li class="btn-header"><a href="calendarPage.php">Calendrier</a></li>
-						<li class="btn-header"><a href="budgetPage.php">Budget</a></li>
-						<li class="btn-header"><a href="listsPage.php">Listes</a></li>
+						<li class="btn-header"><a href="home">Home</a></li>
+						<li class="btn-header"><a href="calendarPage">Calendrier</a></li>
+						<li class="btn-header"><a href="budgetPage">Budget</a></li>
+						<li class="btn-header"><a href="listsPage">Listes</a></li>
 					</ul>
 				</nav>				
 			</div>
 			<div class="username-section">
-				<a href="userSettingsPage.php" id="btn-settings"><?= $action->getFirstname() ?></a> 
+				<a href="userSettingsPage" id="btn-settings"><?= $action->getFirstname() ?></a> 
 			</div>
 			<a href="?logout=true" class="logout-link">| Déconnexion |</a>
 		</div>	
@@ -45,11 +45,11 @@
 	?>
 
 		<div class="index-menu-accueil section-flex">
-			<h2><a href="index.php" class="site-name">Coupling of things</a></h2>
+			<h2><a href="index" class="site-name">Coupling of things</a></h2>
 			<nav>
 				<ul id="home-header">
-					<li class="home-btn"><a href="login.php" id="btn-login">Se connecter</a></li>
-					<li class="home-btn"><a href="signup.php" id="btn-signup">S'inscrire</a></li>
+					<li class="home-btn"><a href="login" id="btn-login">Se connecter</a></li>
+					<li class="home-btn"><a href="signup" id="btn-signup">S'inscrire</a></li>
 				</ul>
 			</nav>
 		</div>

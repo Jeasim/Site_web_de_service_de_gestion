@@ -274,6 +274,6 @@ const initializePageElements = () => {
 const switchModes = (selectedBtn, nonSelectedBtn, viewSection, hideSection, displayType) =>{
 	viewSection.style.display = displayType;
 	hideSection.style.display = "none";
-	nonSelectedBtn.setAttribute("class", "btn-not-selected")
 	selectedBtn.setAttribute("class", "btn-selected");
+	nonSelectedBtn.setAttribute("class", "btn-not-selected");
 }

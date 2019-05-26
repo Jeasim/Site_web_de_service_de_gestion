@@ -23,22 +23,21 @@
 				<div class="column-description expense" id="column-description-last">Acheteur</div>
 			</li>
 		</ul>
-		<ul class="list-expenses"> 
+		<ul class="list-expenses" id="expenses-ul"> 
 			<?php 
 				foreach ($action->expenses as $expense) {
 					if($expense['id_owner'] == $_SESSION["user_id"]){
 
 				?>		
-						<div class="color-1">
+					<li class="expenses-single-line color-1" onclick="manageExpenseOptions(<?= $expense['id'] ?>, this)">
 				<?php
 					}
 				else{
 				?>
-						<div class="color-2">
+					<li class="expenses-single-line color-2" onclick="manageExpenseOptions(<?= $expense['id'] ?>, this)">
 				<?php
 				}
 				?>	
-					<li class="expenses-single-line" onclick="manageExpenseOptions(<?= $expense['id'] ?>)">
 						<div class="expenses-description expense"> <?= $expense['description'] ?> </div>
 						<div class="expenses-type expense"> <?= $expense['type'] ?> </div>
 						<div class="expenses-place expense"> <?= $expense['place'] ?> </div>
@@ -46,10 +45,8 @@
 						<div class="expenses-date expense"> <?= $expense['date_of_purchase'] ?> </div>
 						<div class="expenses-owner expense"> <?= $expense['firstname'] ?> </div>
 					</li>
-				</div>
 			<?php
 			}
-			
 			?>
 		</ul>
 	</div>
@@ -127,7 +124,7 @@
 
 		<div class="section-flex expenses-summary-array">
 			<div class="summary-column" id="first-column">
-				<div>\</div>
+				<div>\------</div>
 				<div>Total : </div>
 				<div>Balance : </div>
 			</div>

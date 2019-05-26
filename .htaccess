@@ -1,0 +1,7 @@
+RewriteEngine on
+
+# Si le nom du fichier + ".php" est un fichier (-f)
+RewriteCond  %{REQUEST_FILENAME}.php -f
+
+# Alors, modifié le fichier par fichier.php.  [L] = break... donc fin de htaccess
+RewriteRule ^(.*)$ $1.php [L]
