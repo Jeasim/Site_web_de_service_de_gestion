@@ -33,7 +33,7 @@
 	<p onclick="resetNewList()">Réinitialiser liste</p>
 	<input type="text" name="new-list-name" id="new-list-name" onkeypress="manageInput()" placeholder="Titre de la liste" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Titre de la liste'" >
 	<p class="list-title"></p>
-	<ul class="list">
+	<ul class="list-ul">
 		<li id="new-list-element"><input type="text" name="new-list-element-input" id="new-list-element-input" onkeypress="addElementList()" placeholder="Nouvelle élément" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nouvelle élément'"></li>
 	</ul>
 	<div id="validation-info"></div>

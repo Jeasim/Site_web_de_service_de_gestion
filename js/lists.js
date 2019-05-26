@@ -12,6 +12,7 @@ let btnResetList 			= null;
 
 window.onload = () => {
 	initializePageElements();	
+	viewListsMode();
 }
 
 const addListMode = () => {
@@ -29,7 +30,7 @@ const viewListsMode = () => {
 
 const resetNewList = () => {
 	listTitleInputNode.style.display = "block";
-	list.style.display = "none";
+	nodeList.style.display = "none";
 	btnResetList.style.display = "none";
 	btnSubmitList.style.display = "none";
 	newListElementInputNode.display = "none";
@@ -69,7 +70,7 @@ const giveListTitle = () => {
 
 const switchInputs = () => {
 	listTitleInputNode.style.display = "none";
-	list.style.display = "block";
+	nodeList.style.display = "block";
 }
 
 const manageInput = () =>{
@@ -106,8 +107,8 @@ const getArrayOfListElements = () =>{
 
 	let listElementsArray = [];
 
-	for (let index = 1; index < list.childElementCount; index++) {
-		const listElement = list.querySelector("li:nth-of-type(" + index + ")");
+	for (let index = 1; index < nodeList.childElementCount; index++) {
+		const listElement = nodeList.querySelector("li:nth-of-type(" + index + ")");
 		listElementsArray.push(listElement.innerHTML);
 
 	}
@@ -116,9 +117,9 @@ const getArrayOfListElements = () =>{
 }
 
 const resetListElements = () => {
-	for (let index = list.childElementCount - 1; index >= 1; index--) {
-		const listElement = list.querySelector("li:nth-of-type(" + index + ")");
-		list.removeChild(listElement);
+	for (let index = nodeList.childElementCount - 1; index >= 1; index--) {
+		const listElement = nodeList.querySelector("li:nth-of-type(" + index + ")");
+		nodeList.removeChild(listElement);
 	}
 }
 
@@ -159,7 +160,7 @@ const emptyNode = (nodeToEmpty) =>{
 const appendListElements = (list, nodeParent) =>{
 	let charHTML = document.getElementById("list-template").innerHTML;
 
-	list.forEach(element => {
+	nodeList.forEach(element => {
 		let node = document.createElement("li");
 		node.innerHTML = charHTML;
 
@@ -249,7 +250,7 @@ const initializePageElements = () => {
 	viewListsBtn = document.querySelector(".view-lists-btn");
 
 	newList = document.querySelector(".new-list");
-	list = document.querySelector(".list");
+	nodeList = document.querySelector(".list-ul");
 	allLists = document.querySelector(".all-lists");
 	allListsTitles = document.querySelector(".all-lists-title");
 
