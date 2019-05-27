@@ -307,4 +307,19 @@
 			$result = self::select("expenses", "id_type", $typeID);
 			return self::fetchAllData($result);
 		}
+
+		public static function getExpense($expenseID){
+			$result = self::select("expenses", "id", $expenseID);
+			return self::fetchAllData($result);
+		}
+
+		public static function updateExpence($expenseID, $description, $place, $price, $owner, $date, $typeID){
+			$connection = Connection::getConnection();
+			
+			$statement = $connection->prepare("UPDATE expenses SET id_owner = ?, description = ?, price = ?, place = ?, date_of_purchase = ?, id_type = ? WHERE id = ?");
+            $statement->bind_param("isdssii", $owner, $description, $price, $place, $date, $typeID, $expenseID);
+			$statement->execute();
+			$result = $statement->get_result();
+			$statement->close();
+		}
 }

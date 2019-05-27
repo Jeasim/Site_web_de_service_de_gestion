@@ -52,7 +52,7 @@
 	</div>
 
 	<div class="btn-group" id="btn-group-expenses">
-		<div class="btn btn-modify">Modifier</div>
+		<div class="btn btn-modify" onclick="modifyExpense()">Modifier</div>
 		<div class="btn btn-delete" onclick="deleteExpense()">Supprimer</div>
 	</div>
 
@@ -117,7 +117,7 @@
 			<input type="date" name="new-expense-date-purchase" id="new-expense-date-purchase" class="form-input">
 		</div>	
 
-		<div class="form-singleLine">
+		<div class="form-singleLine" id="form-expense-btn-div">
 			<button type="submit" onclick="addNewExpense()" class="form-submit">Ajouter</button>
 		</div>	
 	</div>

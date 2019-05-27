@@ -20,7 +20,7 @@ const manageExpenseOptions = (expenseID, node) =>{
 	}
 	else{
 		selectedExpense = null;
-	}
+	}	
 	
 }
 
@@ -36,6 +36,30 @@ const resetAllBorders = () =>{
 		const listElement = nodeListExepenses.querySelector("li:nth-of-type(" + index + ")");
 		listElement.style.border = "none";
 	}
+}
+
+const modifyExpense = () =>{
+
+	document.querySelector("#form-new-expense h2").innerHTML = "Modifier une dépense";
+	document.querySelector("#form-new-expense div button").style.display = "none";
+	let btnModify = document.createElement("button");
+	btnModify.innerHTML = "Modifier";
+	btnModify.setAttribute("class", "form-submit");
+	btnModify.addEventListener("click", updateExpense);
+	document.querySelector("#form-expense-btn-div").appendChild(btnModify);
+	fetchExpense();	
+}
+
+const fillInInputs = (expense) =>{
+	
+
+	document.querySelector("input[name = new-expense-description]").value = expense['description'];
+	document.querySelector("select[name = new-expense-type]").value = expense['id_type'];
+	document.querySelector("input[name = new-expense-place]").value = expense['place'];
+	document.querySelector("input[name = new-expense-price]").value = expense['price'];
+	document.querySelector("select[name = new-expense-owner]").value = expense['id_owner'];
+	document.querySelector("input[name = new-expense-date-purchase]").value = expense['date_of_purchase'];
+
 }
 
 // Requetes AJAX
@@ -89,3 +113,39 @@ const getExpensesOfType = (selectedType) =>{
 		message = JSON.parse(response);
 	})
 }
+
+const fetchExpense = () =>{
+	
+	$.ajax({
+		url : "fetchExpense.php",
+		type: "POST",
+		data: {
+			expenseID : selectedExpense
+		}
+	})
+	.done(response => {
+		expense = JSON.parse(response);
+		fillInInputs(expense[0]);
+	})
+}	
+
+const updateExpense = () =>{
+	
+	$.ajax({
+		url : "updateExpense.php",
+		type: "POST",
+		data: {
+			expenseID : selectedExpense,
+			description : document.querySelector("input[name = 'new-expense-description']").value,
+            place : document.querySelector("input[name = 'new-expense-place']").value,
+            price : document.querySelector("input[name = 'new-expense-price']").value,
+			owner : document.querySelector("select[name = 'new-expense-owner']").value,
+			type : document.querySelector("select[name = 'new-expense-type']").value,
+			date : document.querySelector("input[name = 'new-expense-date-purchase']").value
+		}
+	})
+	.done(response => {
+		expense = JSON.parse(response);
+		location.reload();
+	})
+}	
