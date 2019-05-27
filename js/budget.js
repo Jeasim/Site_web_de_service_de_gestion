@@ -54,7 +54,7 @@ const fillInInputs = (expense) =>{
 	
 
 	document.querySelector("input[name = new-expense-description]").value = expense['description'];
-	document.querySelector("select[name = new-expense-type]").value = expense['id_type'];
+	document.querySelector("select[name = new-expense-type]").value = expense['type'];
 	document.querySelector("input[name = new-expense-place]").value = expense['place'];
 	document.querySelector("input[name = new-expense-price]").value = expense['price'];
 	document.querySelector("select[name = new-expense-owner]").value = expense['id_owner'];

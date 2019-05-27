@@ -310,7 +310,15 @@
 
 		public static function getExpense($expenseID){
 			$result = self::select("expenses", "id", $expenseID);
-			return self::fetchAllData($result);
+
+			$data = [];
+		
+			while($row = $result->fetch_assoc()) {
+				$row["type"] = self::getTypeFromID($row["id_type"]);
+				$data[] = $row;
+			}
+		
+			return $data;
 		}
 
 		public static function updateExpence($expenseID, $description, $place, $price, $owner, $date, $typeID){
