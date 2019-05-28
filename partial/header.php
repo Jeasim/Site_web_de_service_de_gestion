@@ -21,7 +21,6 @@
 				<nav>
 					<ul id="menu-header">
 						<li class="btn-header"><a href="home">Home</a></li>
-						<li class="btn-header"><a href="calendarPage">Calendrier</a></li>
 						<li class="btn-header"><a href="budgetPage">Budget</a></li>
 						<li class="btn-header"><a href="listsPage">Listes</a></li>
 					</ul>

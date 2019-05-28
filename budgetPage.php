@@ -153,20 +153,6 @@
 			?>
 		</div>
 
-		<div class="form-single-line">
-			<div>Trier par type d'achat</div>
-			<select name="new-expense-type" id="expense-type-select-summary" onchange="changeTypeExpense()">
-					<option value="tous-types" name="tous-types">Tous les types</option>
-				<?php 
-					foreach ($action->expenseTypes as $expenseType) {
-				?>
-					<option value="<?= $expenseType ?>" name="new-expense-type"><?= $expenseType ?></option>
-				<?php
-					}
-				?>
-
-			</select>
-		</div>
 	</div>
 
 </div>

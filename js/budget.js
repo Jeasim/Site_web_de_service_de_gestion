@@ -42,17 +42,27 @@ const modifyExpense = () =>{
 
 	document.querySelector("#form-new-expense h2").innerHTML = "Modifier une dépense";
 	document.querySelector("#form-new-expense div button").style.display = "none";
+
 	let btnModify = document.createElement("button");
 	btnModify.innerHTML = "Modifier";
 	btnModify.setAttribute("class", "form-submit");
 	btnModify.addEventListener("click", updateExpense);
+	btnModify.style.margin = "0 1vw";
 	document.querySelector("#form-expense-btn-div").appendChild(btnModify);
+
+
+	let btnCancel = document.createElement("button");
+	btnCancel.innerHTML = "Annuler";
+	btnCancel.setAttribute("class", "form-submit");
+	btnCancel.addEventListener("click", ()=>location.reload());
+	btnCancel.style.margin = "0 1vw";
+	document.querySelector("#form-expense-btn-div").appendChild(btnCancel);
+
 	fetchExpense();	
 }
 
 const fillInInputs = (expense) =>{
 	
-
 	document.querySelector("input[name = new-expense-description]").value = expense['description'];
 	document.querySelector("select[name = new-expense-type]").value = expense['type'];
 	document.querySelector("input[name = new-expense-place]").value = expense['place'];
@@ -100,17 +110,19 @@ const deleteExpense = () =>{
 	})
 }
 
-const getExpensesOfType = (selectedType) =>{
+const getExpensesOfType = (selectedType, userIDParam) =>{
 	
 	$.ajax({
 		url : "fetchSelectedTypeExpenses.php",
 		type: "POST",
 		data: {
-			type : selectedType
+			type : selectedType,
+			userID : userIDParam
 		}
 	})
 	.done(response => {
 		message = JSON.parse(response);
+		
 	})
 }
 

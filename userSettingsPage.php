@@ -13,7 +13,7 @@ if($_SESSION["partner_id"] === 0){
 
     <h2>Ajouter un partenaire</h2>
 
-    <form action="home.php" method="GET">
+    <form action="userSettingsPage.php" method="GET">
         <div>
             <div>Nom d'usager de votre partenaire</div>
             <input type="text" name="partner-username-search">

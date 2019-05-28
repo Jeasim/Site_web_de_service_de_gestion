@@ -45,5 +45,6 @@
 				UserDAO::unbindPartners($_SESSION["user_id"], $_SESSION["partner_id"]);
 				$_SESSION["partner_id"] = UserDAO::getUserPartnerId($_SESSION["user_id"]);
 			}
+
 		}
 	}

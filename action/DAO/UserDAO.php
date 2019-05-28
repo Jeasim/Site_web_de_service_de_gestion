@@ -41,7 +41,7 @@
 
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 			$statement = $connection->prepare("INSERT INTO users (username, firstname, lastname, email, pwd) VALUES (?, ?, ?, ?, ?)");
-			// $statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
+			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $hashedPassword);
 			$statement->bind_param("sssss", $username, $firstname, $lastname, $email, $password);
 
 			$statement->execute();
@@ -158,7 +158,7 @@
 			$hashedPassword = self::fetchData($result, "pwd");
 			
 			return true;
-			// return password_verify($password, $hashedPassword);
+			return password_verify($password, $hashedPassword);
 		}
 
 		public static function verifyEmail($email) {
