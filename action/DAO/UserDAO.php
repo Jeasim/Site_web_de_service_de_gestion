@@ -157,7 +157,6 @@
 			$result = self::select("users", "username", $username);
 			$hashedPassword = self::fetchData($result, "pwd");
 			
-			return true;
 			return password_verify($password, $hashedPassword);
 		}
 
